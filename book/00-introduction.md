@@ -286,7 +286,13 @@ If you are reading this book as a procurement evaluator, please read `CONFLICTS.
 
 ## How this book was made
 
-Transparency about process, because the citation-evidence discipline above demands it. Five phases, each with a discrete artifact and a discrete quality gate.
+This book exists because **Aaron Fulkerson decided to write the resource he wished he'd had** — for himself, for the SE / SC / PM hires he's onboarded, and for the broader practitioner community. Aaron directed the methodology, set the editorial discipline (the citation-evidence taxonomy, the standards-anchored OPAQUE-mention rule, the no-procurement-doc framing, the failure-modes-named principle), and made the calls on what shipped and what got cut. He is the author of record.
+
+He did not type every word. This Field Guide was assembled with substantial help from large-language-model-based agents — specifically, an autonomous research-and-drafting pipeline running Anthropic Claude under Aaron's direction. That fact matters, because **AI agents (used well) do not invent knowledge; they synthesize it from the corpus they have read.** The corpus this pipeline drew on includes the open-source community's READMEs, the framework documentation, the customer-engineering blog posts, the academic papers, the regulatory texts, the conference talks (Interrupt 2025 and many more), the Slack threads where practitioners have argued these patterns out in public, and the OWASP / MITRE / NIST / ENISA governance taxonomies. **This book stands on that work.** Every claim that traces back to a primary source carries an evidence-class tag in-line so the reader can see which input source was load-bearing for which claim, and the [Sources Cited](book/04-glossary.md) chapter at the end of every Part enumerates them by name.
+
+The right thing to do — and the consistent thing to do, given how much of the input is itself open or CC-licensed — is to make this book **equally freely available**. That is why every word is published under [**Creative Commons Attribution-ShareAlike 4.0**](LICENSE) (CC BY-SA 4.0). Remix it. Translate it. Fork it. Improve it. Use it in your own onboarding programs. Quote it back to your CISO. Cite it in your customer-engineering blog. Just keep the attribution chain intact and keep your downstream work under a compatible license, so the next person can build on yours the same way Aaron built on the corpus before him.
+
+The five-phase methodology — transparent because the citation-evidence discipline demands it:
 
 1. **Two rounds of structured adversarial critique before drafting.** Six simulated-reviewer personas spanning Sales Engineer, Product Manager, Enterprise Architect, CISO-FSI, LangChain DevRel, and Developer Educator viewpoints were run against the design spec in two passes (R1 and R2). Each persona produced a critique surface — what was missing, what was overclaimed, what was vendor-positioning in disguise, what was pedagogically broken, what would not survive an FSI audit floor. The design spec was rewritten between each pass to integrate the critique. The third design-spec revision is what the tier files were written against. Critique items that were considered and deliberately not applied are recorded in §15 of the design spec for process integrity.
 
@@ -300,7 +306,7 @@ Transparency about process, because the citation-evidence discipline above deman
 
 A formal inter-rater-reliability study with at least one OPAQUE-internal SME and at least one independent external reviewer under NDA is committed for v1.1. The reviewers, their scope, and the Cohen's kappa results (target ≥ 0.7 on the Production gate) will be disclosed in `CONFLICTS.md` when v1.1 ships.
 
-Authorship drew on substantial assistance from large-language-model-based agents (specifically, an autonomous research-and-drafting pipeline running Anthropic Claude). All factual claims were reviewed against the cited primary sources. The author retains responsibility for the final content. Errors that survive are the author's; corrections are welcome via the GitHub issue tracker.
+**Authorship credit.** Aaron Fulkerson is the author of record. The AI pipeline was a tool used by him, not a co-author; AI-generated drafts were reviewed against cited primary sources at every stage, and the editorial discipline visible in the body is Aaron's directive carried through every pass. Errors that survive are Aaron's — and corrections are welcome via the [GitHub issue tracker](https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph/issues). Where you spot prior art that should have been cited and wasn't, please file an issue with the source — we will fold it in and credit the contributor.
 
 ---
 
