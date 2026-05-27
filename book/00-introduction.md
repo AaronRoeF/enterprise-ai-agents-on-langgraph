@@ -102,7 +102,7 @@ One convention used across every Part is worth introducing here, because you wil
   [CKP]  — checkpoint write (the runtime persists state at this point)
   [HITL] — human-in-the-loop pause (the agent yields control to a human)
   [OBS]  — observability span emission (a trace event surfaces here)
-  [POL]  — policy / guardrail check (the runtime applies a content or action policy)
+  [POL]  — policy / guardrail check (the runtime applies a policy)
 ```
 
 These four annotations carry the same meaning everywhere they appear. Once you have learned them, you can read any state graph in the book and immediately know where the durability boundaries, the human-interruption points, the trace-emission surfaces, and the policy-check choke-points live. That is a lot of architectural information compressed into four bracketed tags.

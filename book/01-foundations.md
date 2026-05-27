@@ -46,9 +46,9 @@ A convention used throughout the book: when an ASCII diagram shows architectural
 Arrow styles in state graphs carry meaning too. Three styles, declared once, used everywhere:
 
 ```
-  -->   solid       -- LLM-decided edge (the agent picked next step)
-  ==>   double      -- system-automatic edge (runtime advances)
-  ..>   dashed      -- human-mediated edge (HITL gate fires)
+  ──►   solid       -- LLM-decided edge (the agent picked next step)
+  ══►   double      -- system-automatic edge (runtime advances)
+  ┄┄►   dashed      -- human-mediated edge (HITL gate fires)
 ```
 
 **When each is used.** Solid arrows mean the LLM emitted a tool call or a routing choice — the next step was *decided by the model*. Double arrows mean the runtime advanced without a model decision — a tool returned and control flowed back, or a conditional edge fired on a deterministic predicate. Dashed arrows mean a human-in-the-loop gate fired — execution paused, durable state was persisted, and the conversation may have slept for minutes or hours before a human resumed it.
@@ -720,7 +720,7 @@ A minimal production ReAct agent with HITL, threaded by `thread_id`, persisting 
 |   [user input]                                                       |
 |        |                                                             |
 |        v                                                             |
-|   +--> [agent (LLM)] [OBS] --no--> [return to user]                  |
+|   +──► [agent (LLM)] [OBS] --no──► [return to user]                  |
 |   |        |                                                         |
 |   |        | call?                                                   |
 |   |        v                                                         |
@@ -742,7 +742,7 @@ A minimal production ReAct agent with HITL, threaded by `thread_id`, persisting 
 |   [user input]                                                       |
 |        |                                                             |
 |        v                                                             |
-|   +--> [agent (LLM)] [OBS] --END--> [return]                         |
+|   +──► [agent (LLM)] [OBS] --END──► [return]                         |
 |   |        |                          ^                              |
 |   |        | call?                    | resume('approve')            |
 |   |        v                          .                              |
@@ -764,8 +764,8 @@ A minimal production ReAct agent with HITL, threaded by `thread_id`, persisting 
 +--------------------------+   +-------------------------------------+
 | GRAPH (Frames 1+2)       |   | RUNTIME SERVICES (cross-cutting)    |
 |                          |   |                                     |
-|  agent <==> tools        |   |  PostgresSaver -- state [CKP]       |
-|              <==> approve|   |  PostgresStore -- cross-thread mem  |
+|  agent ◄══► tools        |   |  PostgresSaver -- state [CKP]       |
+|              ◄══► approve|   |  PostgresStore -- cross-thread mem  |
 |                          |   |  LangSmith     -- spans  [OBS]      |
 |                          |   |  Guardrails AI -- policy [POL]      |
 +--------------------------+   +-------------------------------------+
@@ -975,7 +975,7 @@ The same three-frame progressive disclosure from §1.4.15 applied to the §1.4.1
 |   [user input]                                                       |
 |        |                                                             |
 |        v                                                             |
-|   +--> [agent (LLM)] [OBS] --END--> [return]                         |
+|   +──► [agent (LLM)] [OBS] --END──► [return]                         |
 |   |        |                          ^                              |
 |   |        | call?                    | refund <= $500 (inline)      |
 |   |        v                          |                              |
@@ -997,13 +997,13 @@ The same three-frame progressive disclosure from §1.4.15 applied to the §1.4.1
 |   [user input]                                                       |
 |        |                                                             |
 |        v                                                             |
-|   +--> [agent (LLM)] [OBS] --END--> [return] <-------+               |
+|   +──► [agent (LLM)] [OBS] --END──► [return] ◄──-----+               |
 |   |        |                                          .              |
 |   |        | call?                                    .              |
 |   |        v                                          .              |
 |   |    [tools node] [OBS] [POL]                       .              |
 |   |        |       |                                  .              |
-|   +=no===  |       +-- refund > $500 -->              .              |
+|   +=no===  |       +-- refund > $500 ──►              .              |
 |            |       [approve_refund / interrupt() / [HITL]]           |
 |            |            .                                            |
 |            |            . resume('approve')                          |
@@ -1021,9 +1021,9 @@ The same three-frame progressive disclosure from §1.4.15 applied to the §1.4.1
 +----------------------------------+   +------------------------------+
 | GRAPH (Frames 1+2)               |   | RUNTIME SERVICES             |
 |                                  |   |                              |
-|  agent <==> tools                |   |  PostgresSaver  state [CKP]  |
-|              <==> approve        |   |  PostgresStore  per-tenant   |
-|                    <==>          |   |  LangSmith      spans [OBS]  |
+|  agent ◄══► tools                |   |  PostgresSaver  state [CKP]  |
+|              ◄══► approve        |   |  PostgresStore  per-tenant   |
+|                    ◄══►          |   |  LangSmith      spans [OBS]  |
 |                  execute_refund  |   |  Guardrails AI  policy [POL] |
 +----------------------------------+   +------------------------------+
 ```

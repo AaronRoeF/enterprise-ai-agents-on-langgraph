@@ -1,17 +1,28 @@
 #!/usr/bin/env python3
 """
-ASCII diagram linter for the OCARA Field Guide book.
+ASCII / Unicode diagram linter for the OCARA Field Guide book.
 
 Validates every fenced code block (and any indented-block diagram) against
-the strict ASCII discipline rules:
+the diagram discipline rules:
 
-  1. Width: hard 72-column ceiling. 80 allowed ONLY in code blocks tagged as
-     a programming language (Python, TypeScript, etc.). Diagrams use 72.
+  1. Width: hard 72-column ceiling for diagrams. 120 allowed for code blocks
+     tagged as a programming language.
   2. Containment: diagrams must be inside a fenced code block.
-  3. Character set: 7-bit ASCII only for diagrams. No Unicode box-drawing,
-     emoji, CJK.
+  3. Character set: 7-bit ASCII plus a strict whitelist of Unicode:
+       - Box-drawing:     U+2500..U+257F (─ │ ┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼ ═ ║ ╔ ╗ ╚ ╝ etc.)
+       - Block elements:  U+2580..U+259F (█ ▓ ▒ ░ ▀ ▄ etc.) — for heatmaps
+       - Geometric shapes: U+25A0..U+25FF (► ◄ ▼ ▲ etc.) — arrow semantics
+       - Em-dash U+2014, en-dash U+2013
+       - A short list of arrow chars (→ ← ↑ ↓ ⇒ ⇐)
+     Forbidden non-ASCII: emoji, CJK, fullwidth/halfwidth forms, smart/curly
+     quotes. Any other non-ASCII char is also a violation by default.
   4. No trailing whitespace.
-  5. (Soft) right-border consistency check for box-style diagrams.
+  5. Mermaid blocks are violations (book uses ASCII/Unicode diagrams).
+
+The CC1 convention uses three arrow styles:
+  ─►   LLM-decided control flow (light)
+  ══►  runtime-automatic / deterministic flow (heavy)
+  ─ ─► human-mediated / dashed flow
 
 USAGE:
   python3 tools/lint-ascii-diagrams.py book/01-foundations.md
@@ -20,11 +31,7 @@ USAGE:
 EXIT CODES:
   0 — all checks passed
   1 — violations found
-
-OUTPUT:
-  Per-file violation summary with file:line references.
 """
-import os
 import re
 import sys
 from pathlib import Path
@@ -37,21 +44,93 @@ CODE_LANGS = {
     "diff", "graphql", "protobuf", "proto",
 }
 
-# Diagram-ish languages — must follow ASCII rules.
+# Diagram-ish languages — must follow ASCII/Unicode whitelist rules.
 DIAGRAM_LANGS = {"", "text", "txt", "ascii", "diagram", "mermaid"}
 
 WIDTH_LIMIT_DIAGRAM = 72
 WIDTH_LIMIT_CODE = 120  # soft limit for source code
 
+# --- Unicode whitelist for diagrams -----------------------------------------
+ALLOWED_UNICODE_RANGES = [
+    (0x2500, 0x257F),  # Box Drawing
+    (0x2580, 0x259F),  # Block Elements (block shading for heatmaps)
+    (0x25A0, 0x25FF),  # Geometric Shapes (► ◄ ▼ ▲ etc.)
+]
+ALLOWED_UNICODE_CHARS = {
+    0x2013,  # –  en-dash
+    0x2014,  # —  em-dash
+    0x2190,  # ←  leftwards arrow
+    0x2191,  # ↑  upwards arrow
+    0x2192,  # →  rightwards arrow
+    0x2193,  # ↓  downwards arrow
+    0x21D0,  # ⇐  leftwards double arrow
+    0x21D2,  # ⇒  rightwards double arrow
+    0x2026,  # …  horizontal ellipsis
+    0x00A0,  # NBSP — tolerated; flagged separately if it shows up in code
+}
 
-def is_seven_bit_ascii(s: str) -> bool:
-    """True if every char in s is in the 7-bit ASCII printable range or tab/newline."""
-    return all(ord(c) < 128 for c in s)
+# --- Explicitly-named forbidden classes (for clearer error messages) --------
+SMART_QUOTES = {0x2018, 0x2019, 0x201C, 0x201D, 0x201E, 0x201F, 0x2039, 0x203A}
+FORBIDDEN_RANGES = [
+    # Emoji & pictographs (rough buckets; not exhaustive but covers the
+    # families that actually appear in copy/paste):
+    (0x1F300, 0x1F5FF),  # Misc Symbols and Pictographs
+    (0x1F600, 0x1F64F),  # Emoticons
+    (0x1F680, 0x1F6FF),  # Transport and Map
+    (0x1F900, 0x1F9FF),  # Supplemental Symbols and Pictographs
+    (0x1FA00, 0x1FAFF),  # Symbols and Pictographs Extended-A
+    (0x2700,  0x27BF),   # Dingbats
+    # CJK Unified Ideographs (and Kana / Hangul):
+    (0x3000, 0x303F),    # CJK Symbols and Punctuation
+    (0x3040, 0x309F),    # Hiragana
+    (0x30A0, 0x30FF),    # Katakana
+    (0x3400, 0x4DBF),    # CJK Extension A
+    (0x4E00, 0x9FFF),    # CJK Unified Ideographs
+    (0xAC00, 0xD7AF),    # Hangul Syllables
+    (0x20000, 0x2EBEF),  # CJK Extensions B–F
+    # Fullwidth / halfwidth (double-width chars break monospace grid):
+    (0xFF00, 0xFFEF),
+]
 
 
-def find_non_ascii(s: str) -> list[tuple[int, str]]:
-    """Return list of (column, char) for non-ASCII characters."""
-    return [(i, c) for i, c in enumerate(s) if ord(c) >= 128]
+def is_in_ranges(cp: int, ranges) -> bool:
+    return any(lo <= cp <= hi for lo, hi in ranges)
+
+
+def classify_non_ascii(cp: int) -> str:
+    """Return a short tag describing why a non-ASCII codepoint is forbidden,
+    or "" if it is in the allowlist (i.e., permitted)."""
+    if cp in ALLOWED_UNICODE_CHARS:
+        return ""
+    if is_in_ranges(cp, ALLOWED_UNICODE_RANGES):
+        return ""
+    if cp in SMART_QUOTES:
+        return "smart-quote"
+    if is_in_ranges(cp, FORBIDDEN_RANGES):
+        # Decide bucket label for nicer reporting.
+        if 0x1F300 <= cp <= 0x1FAFF or 0x2700 <= cp <= 0x27BF:
+            return "emoji"
+        if (0x3000 <= cp <= 0x9FFF) or (0xAC00 <= cp <= 0xD7AF) or (0x20000 <= cp <= 0x2EBEF):
+            return "cjk"
+        if 0xFF00 <= cp <= 0xFFEF:
+            return "fullwidth"
+        return "forbidden"
+    # Anything else non-ASCII that we didn't whitelist or explicitly forbid:
+    return "non-whitelisted"
+
+
+def find_violations_in_line(s: str) -> list[tuple[int, str, str]]:
+    """Return list of (column, char, reason) for non-ASCII chars that violate
+    the whitelist."""
+    out = []
+    for i, c in enumerate(s):
+        cp = ord(c)
+        if cp < 128:
+            continue
+        reason = classify_non_ascii(cp)
+        if reason:
+            out.append((i, c, reason))
+    return out
 
 
 def lint_file(path: Path) -> list[str]:
@@ -85,11 +164,13 @@ def lint_file(path: Path) -> list[str]:
             is_diagram = fence_lang in DIAGRAM_LANGS
             limit = WIDTH_LIMIT_DIAGRAM if is_diagram else WIDTH_LIMIT_CODE
 
-            # Width check
+            # Width check (column count = codepoint count; fullwidth chars
+            # are forbidden so a 1:1 col count is safe for diagrams).
             if len(stripped) > limit:
                 kind = "DIAGRAM" if is_diagram else f"CODE({fence_lang})"
                 violations.append(
-                    f"{path}:{line_num}: WIDTH [{kind}] {len(stripped)} cols (limit {limit}) — block starts at line {fence_start_line}"
+                    f"{path}:{line_num}: WIDTH [{kind}] {len(stripped)} cols "
+                    f"(limit {limit}) — block starts at line {fence_start_line}"
                 )
 
             # Trailing whitespace
@@ -98,20 +179,24 @@ def lint_file(path: Path) -> list[str]:
                     f"{path}:{line_num}: TRAILING-WHITESPACE — block starts at line {fence_start_line}"
                 )
 
-            # ASCII-only for diagrams
-            if is_diagram and not is_seven_bit_ascii(stripped):
-                non_ascii = find_non_ascii(stripped)
-                sample = ", ".join(f"col {col}: U+{ord(c):04X} '{c}'" for col, c in non_ascii[:3])
-                violations.append(
-                    f"{path}:{line_num}: NON-ASCII [DIAGRAM] {sample} — block starts at line {fence_start_line}"
-                )
+            # Whitelist check for diagrams
+            if is_diagram:
+                hits = find_violations_in_line(stripped)
+                if hits:
+                    sample = ", ".join(
+                        f"col {col}: U+{ord(c):04X} '{c}' [{reason}]"
+                        for col, c, reason in hits[:3]
+                    )
+                    violations.append(
+                        f"{path}:{line_num}: FORBIDDEN-CHAR [DIAGRAM] {sample} "
+                        f"— block starts at line {fence_start_line}"
+                    )
 
-            # Detect mermaid blocks (these are violations of the ASCII rollback rule)
+            # Detect mermaid blocks (violations of the ASCII rollback rule)
             if fence_lang == "mermaid":
-                # Only report once per block (at the fence open)
                 if line_num == fence_start_line + 1:
                     violations.append(
-                        f"{path}:{fence_start_line}: MERMAID-BLOCK — should be converted to ASCII"
+                        f"{path}:{fence_start_line}: MERMAID-BLOCK — should be converted to ASCII/Unicode"
                     )
 
     if in_fence:
@@ -138,8 +223,6 @@ def main():
         print(f"\n=== {len(all_violations)} violation(s) found ===")
         for v in all_violations:
             print(v)
-        # Aggregate by violation type for a quick summary.
-        # Message format: "path:line: TYPE [scope] details"
         types = {}
         type_pat = re.compile(r":\d+:\s+(\S+)")
         for v in all_violations:
@@ -151,7 +234,7 @@ def main():
             print(f"  {tag}: {count}")
         sys.exit(1)
     else:
-        print(f"All {len(sys.argv)-1} file(s) passed ASCII diagram lint.")
+        print(f"All {len(sys.argv)-1} file(s) passed diagram lint (ASCII + whitelisted Unicode).")
         sys.exit(0)
 
 
