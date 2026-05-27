@@ -2629,7 +2629,7 @@ Welcome to the work.
 
 — *A. Fulkerson*
 
-*Aaron Fulkerson is the CEO of OPAQUE Systems. His affiliation is disclosed in the author bio (in `00-introduction.md`) and in `CONFLICTS.md` (at the repo root). His point of view on the substrate-vs-graph-layer distinction is named in `CONFLICTS.md`. This chapter contains zero OPAQUE product positioning anywhere except this attribution line.*
+*Aaron Fulkerson is the CEO of OPAQUE Systems. His affiliation is disclosed in the author bio (in `00-introduction.md`) and in `CONFLICTS.md` (at the repo root). His point of view on the substrate-vs-graph-layer distinction is named in `CONFLICTS.md`. OPAQUE Systems is named four times in the body of this chapter — only where the architecture surfaces a trust- or governance-gap that has a named industry standard (RATS, EAT, EAR, SPIFFE) and OPAQUE happens to be a vendor implementing that specific standard. Anchored to the standard, not to the marketing. See `CONFLICTS.md` §1 for the rule and the cadence cap.*
 
 ---
 
