@@ -8,7 +8,7 @@ date: 2026-05-24
 -->
 
 # Enterprise AI Agents on LangGraph: A Field Guide
-## Chapter 4 — Field Guide Glossary
+## Field Guide Glossary
 
 *The canonical terminology reference across Foundations, Patterns, and Production. Single definition per term, cross-tier consistent, cross-referenced.*
 
@@ -43,9 +43,9 @@ Two access paths.
 
 ### Tier marker convention
 
-- **(Foundations)** — first appears or is most fully developed in Chapter 1.
-- **(Patterns)** — first appears or is most fully developed in Chapter 2.
-- **(Production)** — first appears or is most fully developed in Chapter 3.
+- **(Foundations)** — first appears or is most fully developed in Part I.
+- **(Patterns)** — first appears or is most fully developed in Part II.
+- **(Production)** — first appears or is most fully developed in Part III.
 - **(Foundations / Patterns)** — introduced in Foundations, deepened in Patterns.
 - **(Foundations / Production)** — introduced in Foundations, deepened in Production.
 - **(All three)** — referenced throughout. The primary-development tier is bolded.
@@ -167,7 +167,7 @@ Cross-references: → TEE attestation, → signed action chain, → SLSA, → su
 First appears in: §3.4.
 
 **Audit-Evidence Cookbook** *(**Production**)*
-Chapter §3.4. The chapter that converts agent architecture into operational lifecycle — what gets signed, what gets retained where for how long, what surfaces to which SIEM, reproducibility, examination-day exhibits, incident response, break-glass, exit plan, per-recipe artifact.
+§3.4. The section that converts agent architecture into operational lifecycle — what gets signed, what gets retained where for how long, what surfaces to which SIEM, reproducibility, examination-day exhibits, incident response, break-glass, exit plan, per-recipe artifact.
 Cross-references: → audit-evidence pattern, → Evidence Index, → examination dossier, → MRM.
 First appears in: §3.4.
 
@@ -556,7 +556,7 @@ Cross-references: → EU AI Act, → Annex III, → human oversight.
 First appears in: §3.5.
 
 **HIPAA (Health Insurance Portability and Accountability Act)** *(**Production**)*
-US health-data privacy regime. 45 CFR Part 164 — §164.308 administrative, §164.310 physical, §164.312 technical, §164.314 BAA, §164.316 documentation. The Field Guide reference-design PHI deployment chapter (§3.12) walks the controls.
+US health-data privacy regime. 45 CFR Part 164 — §164.308 administrative, §164.310 physical, §164.312 technical, §164.314 BAA, §164.316 documentation. The Field Guide reference-design PHI deployment section (§3.12) walks the controls.
 Cross-references: → PHI gap, → BAA chain, → de-identification.
 First appears in: §3.5.
 
@@ -669,7 +669,7 @@ First appears in: §1.10.
 **Klarna May 2025 reversal** *(**Foundations** / Patterns / **Production**)*
 The canonical case of a vendor-disclosed launch metric being publicly walked back. Klarna's CEO conceded that the AI-replaces-headcount framing overstated steady-state performance. The teaching the Field Guide commits to: **vendor-disclosed metrics are not MRM-validation evidence**.
 Cross-references: → MRM, → vendor-disclosed metrics, → confidence gate, → Customer Support recipe.
-First appears in: §1.10; §3.9 dedicated chapter.
+First appears in: §1.10; §3.9 dedicated section.
 
 **Knowledge gate** *(**Foundations** / Patterns / Production)*
 The end-of-tier evaluation. Model brief + A/B/C model answers + named evaluator + 5–7 criterion rubric (pass / partial / fail) + retake mechanic + PM-track variant. Production adds whiteboard test + operational-lifecycle role-play + capstone.
@@ -816,7 +816,7 @@ Cross-references: → checkpointer, → PostgresSaver, → SqliteSaver.
 First appears in: §1.4 / §1.5.
 
 **Mentor checkpoint** *(**Foundations** / Patterns / Production)*
-Curriculum vocabulary. A scheduled 20–45 min mentor conversation invitation at four named points: post-Foundations gate, post-Identity chapter, pre-Production whiteboard, post-Production gate. ~2.5 hours mentor time per new hire total.
+Curriculum vocabulary. A scheduled 20–45 min mentor conversation invitation at four named points: post-Foundations gate, post-Identity section, pre-Production whiteboard, post-Production gate. ~2.5 hours mentor time per new hire total.
 Cross-references: → knowledge gate, → evaluator, → capstone.
 First appears in: §1.17.
 
@@ -992,12 +992,12 @@ Cross-references: → PostgresSaver, → retrieval, → vector store.
 First appears in: §1.5.
 
 **PHI (Protected Health Information)** *(**Production**)*
-HIPAA-regulated category of patient data. As of May 2026, **no production LangGraph deployment touches PHI on any framework**; the Field Guide's Healthcare chapter is `[reference design]`.
+HIPAA-regulated category of patient data. As of May 2026, **no production LangGraph deployment touches PHI on any framework**; the Field Guide's Healthcare section is `[reference design]`.
 Cross-references: → PHI gap, → HIPAA, → Healthcare, → BAA chain.
 First appears in: §3.12.
 
 **PHI gap** *(**Production**)*
-§3.12 — the explicit acknowledgment that no production LangGraph PHI deployment exists; the chapter is reference-design only. One of the three gaps the Field Guide marks honestly (Sovereign gap, PHI gap, insurance gap).
+§3.12 — the explicit acknowledgment that no production LangGraph PHI deployment exists; the section is reference-design only. One of the three gaps the Field Guide marks honestly (Sovereign gap, PHI gap, insurance gap).
 Cross-references: → PHI, → Healthcare, → Sovereign gap, → insurance gap, → reference design.
 First appears in: §3.12.
 
@@ -1216,7 +1216,7 @@ Cross-references: → ICP, → Sovereign gap, → data-residency reasoning.
 First appears in: §1.12.
 
 **Sovereign gap** *(**Production**)*
-§3.11 — the explicit acknowledgment that no public LangGraph Sovereign-region deployment exists; the chapter is structural-fit-only. One of the three gaps the Field Guide marks honestly.
+§3.11 — the explicit acknowledgment that no public LangGraph Sovereign-region deployment exists; the section is structural-fit-only. One of the three gaps the Field Guide marks honestly.
 Cross-references: → Sovereign, → PHI gap, → insurance gap, → data-residency reasoning.
 First appears in: §3.11.
 
@@ -1517,7 +1517,7 @@ data-leak surface | leakage pathway | leak vector | prompt injection (direct) | 
 
 user identity | agent identity (workload) | agent-on-behalf-of-user identity | three agent identity problems | OAuth 2.x | DPoP | PAR | RAR | CIBA | step-up authentication | PKCE | SPIFFE/SPIRE | FGA | ReBAC | OpenFGA | Cedar | Topaz | Permit.io | Oso | Styra | Entra Agent ID | Okta for AI Agents | Auth0 for AI Agents | Ping AIC | FGA modeling exercise
 
-**Why this cluster matters.** The Patterns §2.4 Identity / Agent AuthZ chapter is standalone because cross-tenant aggregation, action provenance, and audit-trail integrity all start here. Conflating workload identity with delegation identity is the most-common vendor-marketing confusion.
+**Why this cluster matters.** Part II §2.4 Identity / Agent AuthZ is standalone because cross-tenant aggregation, action provenance, and audit-trail integrity all start here. Conflating workload identity with delegation identity is the most-common vendor-marketing confusion.
 
 ## §4.2.10 Cluster 10 — LangGraph primitives
 
@@ -1535,7 +1535,7 @@ LangGraph Cloud SaaS | BYOC | BYOC Azure (gap) | BYOC GCP (gap) | BYOC dataplane
 
 MRM | MRM-validation evidence | vendor-disclosed metrics | SR 11-7 | OCC Bulletin 2011-12 | SIEM | OCSF | OpenLineage | Evidence Index | sign-chain (signed action chain) | HSM-backed signing chain | attestation receipt | TEE attestation | audit-evidence pattern | Audit-Evidence Cookbook | examination dossier | break-glass | RFC 3161 | SLSA | reproducibility | agent manifest | model-swap protocol | first-60-minutes runbook | operational-lifecycle role-play | exit plan | ICT register entry | concentration risk | critical ICT-TPP | WORM | retention schedule | STRIDE-A | Incident Classification Guide | DPIA | TLPT
 
-**Why this cluster matters.** Production §3.4 — the Audit-Evidence Cookbook — is the single most important chapter for Tier-1 FSI procurement. Without it, the Field Guide is below FSI audit floor.
+**Why this cluster matters.** Production §3.4 — the Audit-Evidence Cookbook — is the single most important section for Tier-1 FSI procurement. Without it, the Field Guide is below FSI audit floor.
 
 ## §4.2.13 Cluster 13 — Regulatory regimes
 
@@ -1828,7 +1828,7 @@ The Field Guide intentionally does **not** define the following terms in the bod
 
 **P-ID (Pathway Identifier).** Vendor-internal taxonomy numbering scheme. Not used in the Field Guide body. See the same explanation as for "bleed."
 
-**OPAQUE Systems / OPAQUE confidential computing.** The author's affiliation. Disclosed in the author bio in `00-introduction.md` and in `CONFLICTS.md`. Named sparingly in the Part I (Foundations) body per the standards-anchored editorial rule documented in `CONFLICTS.md` §1 — at most once per chapter section, where the architecture surfaces a gap that has both a named industry standard and a specific OPAQUE-shipping primitive. **Not used as product positioning in Part II (Patterns) or Part III (Production) bodies.** The Production §3.6.15 substrate-level cluster discusses substrate primitives (TEE attestation, sealed keys, attested network egress, attested workload identity) at category level — naming the specific substrate primitive and the residual risk, but not naming any vendor (including OPAQUE) as the remediation answer.
+**OPAQUE Systems / OPAQUE confidential computing.** The author's affiliation. Disclosed in the author bio in `00-introduction.md` and in `CONFLICTS.md`. Named sparingly in the Part I (Foundations) body per the standards-anchored editorial rule documented in `CONFLICTS.md` §1 — at most once per section, where the architecture surfaces a gap that has both a named industry standard and a specific OPAQUE-shipping primitive. **Not used as product positioning in Part II (Patterns) or Part III (Production) bodies.** The Production §3.6.15 substrate-level cluster discusses substrate primitives (TEE attestation, sealed keys, attested network egress, attested workload identity) at category level — naming the specific substrate primitive and the residual risk, but not naming any vendor (including OPAQUE) as the remediation answer.
 
 **PAC (Product Advisory Council).** Author-internal skill name from CompanyOS. Unrelated to the Field Guide.
 
@@ -1853,7 +1853,7 @@ Reader-side: open an issue on the public GitHub repository if you encounter a te
 
 ---
 
-*End of Chapter 4 — Field Guide Glossary.*
+*End — Field Guide Glossary.*
 
 *Companion files:* `01-foundations.md` · `02-patterns.md` · `03-production.md` · `05-anki-deck/` · `CONFLICTS.md` · `LICENSE`.
 

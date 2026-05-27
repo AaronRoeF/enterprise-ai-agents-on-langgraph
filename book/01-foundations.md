@@ -8,7 +8,7 @@ date: 2026-05-24
 -->
 
 # Enterprise AI Agents on LangGraph: A Field Guide
-## Chapter 1 — Foundations
+## Part I — Foundations
 
 *A Field Guide for Sales Engineers, Solution Consultants, and Product Managers building, selling, and shipping enterprise AI agents.*
 
@@ -18,15 +18,15 @@ date: 2026-05-24
 **Reading time:** 6–8 hours core read, two-week absorbable
 **Status:** Foundations is the must-read core. Patterns and Production are ongoing reference.
 
-> **Companion files.** Procurement-evaluation, author affiliation, and funding disclosures live in `CONFLICTS.md` at the repo root. The canonical terminology reference lives in `04-glossary.md`. Spaced-retrieval cards for this chapter live in `05-anki-deck/01-foundations.apkg` — **Anki** is an open-source spaced-repetition flashcard app ([apps.ankiweb.net](https://apps.ankiweb.net/)); the `.apkg` files in this repo import directly into Anki to drill the chapter's vocabulary on a schedule that adapts to your recall.
+> **Companion files.** Procurement-evaluation, author affiliation, and funding disclosures live in `CONFLICTS.md` at the repo root. The canonical terminology reference lives in `04-glossary.md`. Spaced-retrieval cards for this Part live in `05-anki-deck/01-foundations.apkg` — **Anki** is an open-source spaced-repetition flashcard app ([apps.ankiweb.net](https://apps.ankiweb.net/)); the `.apkg` files in this repo import directly into Anki to drill the Part's vocabulary on a schedule that adapts to your recall.
 
 > **This is not a procurement-evaluation document.** It is an educational reference. Procurement decisions require independent vendor evaluation (Gartner, Forrester, NIST, ENISA, customer-side technical evaluation). This guide is one input among many; it is not a substitute for vendor due diligence.
 
 ---
 
-## How to read this chapter
+## How to read this Part
 
-This chapter has two reading paths in a single file. Both paths share the same conceptual narrative, the same diagrams, and the same exit gate. They differ only in how much code they ask you to absorb.
+This Part has two reading paths in a single file. Both paths share the same conceptual narrative, the same diagrams, and the same exit gate. They differ only in how much code they ask you to absorb.
 
 **Engineer-track (SE / SC / EA on-ramp).** Read everything, including the Python code blocks. They show you the LangGraph primitives you will reach for once you start prototyping. If you do not write Python today but you expect to next month, do not skip them — read them as a vocabulary list. You are not being asked to memorize syntax. You are being asked to recognize the primitives when a customer's engineering team uses them in a discovery call.
 
@@ -85,7 +85,7 @@ If neither of those is available to you when you start, do not stop reading. You
 
 ---
 
-## What you'll be able to do by the end of this chapter
+## What you'll be able to do by the end of this Part
 
 Outcomes are explicit by role.
 
@@ -112,13 +112,13 @@ Outcomes are explicit by role.
 - Wire up a minimal LangGraph ReAct agent with a Postgres checkpointer.
 - Add a human-in-the-loop interrupt at one point in the graph.
 - Identify the three places this minimal design would fail in production.
-The exit gate at the end of the chapter (§1.16) tests all three role tracks against the same customer scenario.
+The exit gate at the end of this Part (§1.16) tests all three role tracks against the same customer scenario.
 
 ---
 
 ## Mentor checkpoint #1 (post-Foundations gate)
 
-Before you start, know that this chapter ends with a knowledge gate that benefits from a 30-minute conversation with your team lead or mentor. The gate is not the conversation. The gate is the work you bring to the conversation. The expectation, in honest terms: you read the chapter, attempt the gate, and then meet with someone who has shipped at least one production agent to talk through where your vocabulary felt wobbly, which of the three identity problems is novel to you, and which of the six recipes feels most familiar from your prior work. If you do not have a mentor available, the gate includes a rubric you can apply against your own answer. Self-assessment is the fallback, not the primary mode.
+Before you start, know that this Part ends with a knowledge gate that benefits from a 30-minute conversation with your team lead or mentor. The gate is not the conversation. The gate is the work you bring to the conversation. The expectation, in honest terms: you read the Part, attempt the gate, and then meet with someone who has shipped at least one production agent to talk through where your vocabulary felt wobbly, which of the three identity problems is novel to you, and which of the six recipes feels most familiar from your prior work. If you do not have a mentor available, the gate includes a rubric you can apply against your own answer. Self-assessment is the fallback, not the primary mode.
 
 The mentor format works the same way whether you're inside a vendor onboarding program, ramping into a new role, or studying solo. If you don't have a mentor available, find an engineering peer or product peer who has shipped one production agent and walk through your gate answer with them. Pay particular attention to the three identity problems and the six recipe families — those are the surfaces where most production gaps appear, and the surfaces where hardware-enforced trust (cryptographic action chains, signed agent identity, verifiable policy enforcement) shows up next.
 
@@ -468,7 +468,7 @@ When a customer says they are evaluating frameworks, the disambiguating question
 
 ## §1.4 LangGraph primitives
 
-> **Annotation key (recap).** `[CKP]` checkpointer, `[OBS]` observability emission, `[POL]` policy/guardrail check, `[HITL]` human-in-the-loop interrupt. Arrow styles: solid `─►` LLM-decided, double `══►` system-automatic, dashed `─ ─►` human-mediated. First defined in §1 ("How to read this chapter") of Foundations.
+> **Annotation key (recap).** `[CKP]` checkpointer, `[OBS]` observability emission, `[POL]` policy/guardrail check, `[HITL]` human-in-the-loop interrupt. Arrow styles: solid `─►` LLM-decided, double `══►` system-automatic, dashed `─ ─►` human-mediated. First defined in §1 ("How to read this Part") of Foundations.
 
 This is the section where the engineer-track and PM-track diverge most clearly. Engineer-track readers will read the code. PM-track readers will read the concept boxes that bracket each primitive. The vocabulary you absorb here will appear throughout the rest of the book.
 
@@ -835,7 +835,7 @@ def escalate_to_human(account_id: str, summary: str, tenant_id: str) -> dict:
 TOOLS = [lookup_account, place_refund, escalate_to_human]
 ```
 
-> **CONCEPT BOX (PM-track).** Three tools. Each takes a `tenant_id`. That argument is the per-tenant boundary — the agent must pass the correct tenant for every tool call. In production, this is not enforced strongly enough by argument-passing alone; the database, the queue, and the payments system must each enforce per-tenant isolation independently. Foundations introduces the concept; Patterns covers the cross-tenant isolation chapter in depth.
+> **CONCEPT BOX (PM-track).** Three tools. Each takes a `tenant_id`. That argument is the per-tenant boundary — the agent must pass the correct tenant for every tool call. In production, this is not enforced strongly enough by argument-passing alone; the database, the queue, and the payments system must each enforce per-tenant isolation independently. Foundations introduces the concept; Patterns covers the cross-tenant isolation section in depth.
 
 > **CONCEPT BOX (PM-track) — the agent-graph tenant-isolation gap.** The `tenant_id` argument above is **software-layer enforcement** at the agent-graph layer, and it is **not deterministic for a regulated buyer**. The LLM constructs the tool-call arguments; nothing in the graph itself mechanically prevents the model from passing the wrong tenant value, and "we told the model to pass the right one" is not a control a CISO or FSI auditor will accept. Deterministic isolation has to live in lower-trust substrates that do not depend on model behaviour: row-level security in the database, per-tenant partitioning in the queue, a per-tenant API contract on the payments system, and — at the platform level — per-tenant scoping across the five cross-tenant surfaces (retriever, cache, checkpointer, observability, model). Foundations names the gap; Patterns §2.7 (governance Category 1 — cross-tenant aggregation) frames it as a governance failure mode; Production §3.2 (Cross-Tenant Isolation: The Five Surfaces) gives the full mechanics, named-component mitigations, and audit-evidence patterns. Readers who want to jump ahead — particularly FSI and Healthcare technical-discovery readers — should go directly there.
 
@@ -1138,7 +1138,7 @@ Agents complicate this in three ways:
 2. **Step state and conversation state blur.** The ReAct "thought" trace lives in messages, which is also the conversation history. Engineers must decide what to keep and what to summarize.
 3. **Long-term memory across users is a multi-tenancy problem.** If the agent learns "Alice prefers concise responses," that fact must not leak into Bob's conversation. The `BaseStore` must enforce per-tenant or per-user isolation, and most teams underestimate the difficulty of doing this correctly.
 
-The cross-tenant isolation problem is large enough that Patterns covers it as a dedicated governance category (§2.7.2 Category 1) and Production dedicates a full chapter to it (§3.2, "Cross-Tenant Isolation: The Five Surfaces"). Foundations needs only the conceptual flag.
+The cross-tenant isolation problem is large enough that Patterns covers it as a dedicated governance category (§2.7.2 Category 1) and Production dedicates a full section to it (§3.2, "Cross-Tenant Isolation: The Five Surfaces"). Foundations needs only the conceptual flag.
 
 > **CONCEPT BOX (PM-track).** When a customer says *"the agent forgets things between sessions,"* the question is whether they have a long-term memory store at all. When they say *"the agent forgets things mid-conversation,"* the question is whether they're using a checkpointer (and whether the context window is being truncated). These are different problems with different solutions. The vocabulary that wins the customer's respect: "Are you using `BaseStore` for cross-thread memory, or are you relying on the thread checkpointer alone?"
 
@@ -1791,7 +1791,7 @@ The HIPAA shadow falls across every Healthcare conversation. **PHI-in-production
 - **Vizient** — healthcare supply-chain analytics (non-PHI). `[customer-produced-evidence]`
 - **Komodo Health MapAI** — de-identified longitudinal patient data (330M patient journeys, per Komodo's own materials). De-identified, not PHI in production. `[customer-produced-evidence]`
 
-**Regulatory shape:** HIPAA Security Rule (45 CFR Part 164), HITI-1 source attribute for AI-driven clinical decision support, FDA SaMD classification for software as a medical device, the state-patchwork (Washington My Health My Data Act, Connecticut DPA, CMIA in California), and FDA PCCP for AI/ML SaMD. Production carries a PHI-in-scope reference deployment chapter (CISO #8 in the design spec) — every claim there `[reference design]`.
+**Regulatory shape:** HIPAA Security Rule (45 CFR Part 164), HITI-1 source attribute for AI-driven clinical decision support, FDA SaMD classification for software as a medical device, the state-patchwork (Washington My Health My Data Act, Connecticut DPA, CMIA in California), and FDA PCCP for AI/ML SaMD. Production carries a PHI-in-scope reference deployment section (CISO #8 in the design spec) — every claim there `[reference design]`.
 
 **Deployment preference:** Self-hosted; BAA chain required (Anthropic ↔ Bedrock ↔ LangChain ↔ reranker ↔ customer-app); de-identification engineering (Safe Harbor or Expert Determination) is non-negotiable for any PHI-adjacent deployment.
 
@@ -1813,7 +1813,7 @@ The largest segment by deployment count and the most heterogeneous. Five sub-mot
 
 The fourth segment in the design spec, marked explicitly with the **most honest framing in the catalog**. Sovereign agent deployments — in nations or regions with data-residency, key-custody, and operator-residency requirements (EU Gaia-X, SecNumCloud, EUCS, BSI C5, MAS, DFSA, CBUAE, SAMA, SDAIA, UAE PDPL, China PIPL, India DPDPA) — are a **major target market with zero public LangGraph deployment evidence** as of May 2026.
 
-The structural fit is real (LangGraph supports self-hosted, air-gapped Kubernetes deployments; Postgres co-locates with the agent runtime; LangSmith can be self-hosted). The evidence is zero. The two facts are different. Patterns and Production cover the **Data Residency Reasoning** chapter (per CISO #6 in the design spec) — five sovereignty axes (data residency, processing locus, model locus, key custody, operator residency) crossed with per-region regulatory landscape and sovereign-cloud options (Gaia-X, SecNumCloud / ANSSI, EUCS high, BSI C5, Core42, OCI Sovereign, AWS European Sovereign Cloud, Azure Local / Stack Hub Sovereign, GCP sovereign partnerships, T-Systems Sovereign Cloud, Bleu, S3NS, Delos).
+The structural fit is real (LangGraph supports self-hosted, air-gapped Kubernetes deployments; Postgres co-locates with the agent runtime; LangSmith can be self-hosted). The evidence is zero. The two facts are different. Patterns and Production cover the **Data Residency Reasoning** section (per CISO #6 in the design spec) — five sovereignty axes (data residency, processing locus, model locus, key custody, operator residency) crossed with per-region regulatory landscape and sovereign-cloud options (Gaia-X, SecNumCloud / ANSSI, EUCS high, BSI C5, Core42, OCI Sovereign, AWS European Sovereign Cloud, Azure Local / Stack Hub Sovereign, GCP sovereign partnerships, T-Systems Sovereign Cloud, Bleu, S3NS, Delos).
 
 The Foundations framing is the honest one: *Sovereign is structurally a fit and operationally a `[zero]`-deployment segment. When a customer asks about sovereign deployment, the right answer is: 'No public LangGraph deployment exists in your region. The structural fit looks like X. The deployment shape that would apply is Y. Here is the evidence base we have.'*
 
@@ -1845,7 +1845,7 @@ The dominant failure mode the security team will care about is **indirect prompt
 
 ### §1.12.6.2 Healthcare vignette — the non-PHI clinical-research copilot
 
-A mid-tier healthcare ISV serving clinical research organizations wants to add a deep-research agent that ingests medical literature and surfaces relevant studies for clinician users. The buyer is the VP of Product. The operator is the clinical-content team. The end-user is the clinician. **Critically: the data in scope is published medical literature, not PHI.** This puts the deployment in a `[reference design]` adjacency to the PHI-in-scope chapter in Production but does not require the full HIPAA Security Rule controls because PHI is not present.
+A mid-tier healthcare ISV serving clinical research organizations wants to add a deep-research agent that ingests medical literature and surfaces relevant studies for clinician users. The buyer is the VP of Product. The operator is the clinical-content team. The end-user is the clinician. **Critically: the data in scope is published medical literature, not PHI.** This puts the deployment in a `[reference design]` adjacency to the PHI-in-scope section in Production but does not require the full HIPAA Security Rule controls because PHI is not present.
 
 The recommendation is Plan-and-Execute topology with `deepagents` as the harness, multi-document retrieval against PubMed-class indexes, citation-rigor as a first-class quality concern (Mata v. Avianca anchor), HITL on every published-claim citation, Self-Hosted Enterprise deployment shape with VPC-isolated runtime, LangSmith self-hosted (not LangSmith Cloud — the data is non-PHI but the customer prefers self-hosted observability for category alignment), custom JWT for clinician identity with step-up authentication for high-stakes claims.
 
@@ -1907,7 +1907,7 @@ Foundations is enough to answer both questions. Patterns adds the named-componen
 
 ### §1.12.7.3 Three customer conversations where Foundations alone is enough
 
-Three customer scenarios where you can hold the entire conversation on the vocabulary in this chapter:
+Three customer scenarios where you can hold the entire conversation on the vocabulary in this Part:
 
 **(1) "We're considering building an agent. What do you think?"** Foundations alone is enough. Walk the workflow-vs-agent cut. Walk the ten-tier stack. Walk the three identity problems. Recommend a topology from §1.7.5. Identify the dominant governance category. End with the five disambiguating questions you will ask their engineering team next.
 
@@ -1989,11 +1989,11 @@ Before you attempt the knowledge gate in §1.16, run yourself through this check
 
 If you can pass all eleven tests from memory in under 30 seconds total, you are gate-ready. If not, the gate is harder than the test — re-read the sections you stumbled on.
 
-**One more honest test.** When you read this chapter for the first time, did anything **surprise** you? The strongest signal of curriculum absorption is the ability to name what was new. If everything felt familiar, you have either skimmed the chapter or you are already past the Foundations level. If five things felt new, the chapter did its job. If twenty things felt new, you are exactly the reader this book was written for, and you should expect to re-read sections multiple times — that is the right experience for a Foundations chapter. The vocabulary will become reflexive over the next 60–90 days; do not expect it on day 1.
+**One more honest test.** When you read this Part for the first time, did anything **surprise** you? The strongest signal of curriculum absorption is the ability to name what was new. If everything felt familiar, you have either skimmed the Part or you are already past the Foundations level. If five things felt new, the Part did its job. If twenty things felt new, you are exactly the reader this book was written for, and you should expect to re-read sections multiple times — that is the right experience for Part I. The vocabulary will become reflexive over the next 60–90 days; do not expect it on day 1.
 
-**A note on pacing.** This chapter is ~6–8 hours of read time if you do it cover-to-cover with the concept boxes. Most new hires take 2–3 sittings spread over the first week. The right cadence is roughly: §1.1–§1.4 in sitting 1 (~2 hours), §1.5–§1.9 in sitting 2 (~2.5 hours), §1.10–§1.15 in sitting 3 (~2 hours), §1.16 gate attempt + mentor checkpoint in sitting 4 (~1.5 hours). The chapter is intentionally larger than typical first-week reading because the vocabulary it teaches is the foundation for everything else in the book. Honor the time investment; it pays back over the next 12 months.
+**A note on pacing.** This Part is ~6–8 hours of read time if you do it cover-to-cover with the concept boxes. Most new hires take 2–3 sittings spread over the first week. The right cadence is roughly: §1.1–§1.4 in sitting 1 (~2 hours), §1.5–§1.9 in sitting 2 (~2.5 hours), §1.10–§1.15 in sitting 3 (~2 hours), §1.16 gate attempt + mentor checkpoint in sitting 4 (~1.5 hours). This Part is intentionally larger than typical first-week reading because the vocabulary it teaches is the foundation for everything else in the book. Honor the time investment; it pays back over the next 12 months.
 
-**A final reminder on the dual reading paths.** The engineer-track and the PM-track diverge most in §1.4. They re-merge in §1.5 and stay merged through the rest of the chapter. Patterns onward assumes both tracks have absorbed the same vocabulary from this chapter. If you skipped the §1.4 code blocks as a PM-track reader, that is exactly the right move; the concept boxes carry the meaning. If you skipped the concept boxes as an engineer-track reader, that is also fine; the code does the same work. The gate (§1.16) tests both tracks against the same scenario and asks for role-appropriate answers — the SE/SC and PM tracks are not separate gates on separate content; they are separate angles on the same vocabulary. Foundations is one chapter, one set of ideas, two reading paths.
+**A final reminder on the dual reading paths.** The engineer-track and the PM-track diverge most in §1.4. They re-merge in §1.5 and stay merged through the rest of this Part. Patterns onward assumes both tracks have absorbed the same vocabulary from this Part. If you skipped the §1.4 code blocks as a PM-track reader, that is exactly the right move; the concept boxes carry the meaning. If you skipped the concept boxes as an engineer-track reader, that is also fine; the code does the same work. The gate (§1.16) tests both tracks against the same scenario and asks for role-appropriate answers — the SE/SC and PM tracks are not separate gates on separate content; they are separate angles on the same vocabulary. Foundations is one Part, one set of ideas, two reading paths.
 
 **One last orientation note.** This Field Guide is licensed CC BY-SA 4.0. You are free to share it, fork it, annotate it, translate it. If you find a mistake, file an issue at the GitHub repo. If you find a section that did not teach you what it should have, file an issue. The book gets better with reader feedback; that is the whole point of the public license. The author affiliation and conflict-of-interest disclosure live in `CONFLICTS.md` at the repo root. The book is one input among many; treat it as such.
 
@@ -2073,7 +2073,7 @@ If you got 10+ correct from memory, you are ready for the gate. If you got fewer
 
 ## §1.15 Foundations Glossary (top ~50 terms)
 
-This is the chapter-local glossary. The canonical, first-use-linked terminology reference for the whole book lives in `04-glossary.md`. The Foundations glossary surfaces the ~50 terms a new hire must hold in working memory.
+This is the Part-local glossary. The canonical, first-use-linked terminology reference for the whole book lives in `04-glossary.md`. The Foundations glossary surfaces the ~50 terms a new hire must hold in working memory.
 
 > **Two reading modes (per EYE M4 fix).** This glossary is organized as a **conceptual learning map** — terms grouped into eleven sub-clusters with an organizing principle named per cluster, for new readers building schema. For an **alphabetical reference index** suitable for lookup, see `04-glossary.md` at the repo root (the canonical, first-use-linked book-wide glossary). The five top-level conceptual categories the eleven sub-clusters fall under: (1) Architectural primitives — agent / state / runtime; (2) Vendor-specific primitives — LangGraph-named APIs; (3) Protocols — A2A / MCP / AGP and OAuth-family identity; (4) Failure modes and governance; (5) Audience vocabulary — buyer / operator personas and recipe families.
 
@@ -2205,7 +2205,7 @@ This is the chapter-local glossary. The canonical, first-use-linked terminology 
 
 ## §1.16 Knowledge Gate — Foundations
 
-This is the exit gate for the Foundations chapter. The gate has three role-tracks; you should attempt the one that matches your role. If you are a generalist or are still figuring out which track you fit, attempt all three — the time investment is ~90 minutes total, and the exercise is the most valuable single hour in this chapter.
+This is the exit gate for Part I (Foundations). The gate has three role-tracks; you should attempt the one that matches your role. If you are a generalist or are still figuring out which track you fit, attempt all three — the time investment is ~90 minutes total, and the exercise is the most valuable single hour in this Part.
 
 **Format of each track.**
 
@@ -2373,7 +2373,7 @@ asyncio.run(main())
 
 **Three production failure modes this design has.**
 
-**(1) The per-tenant predicate is in the tool, not enforced at the checkpointer or the retrieval layer.** The `lookup_account` tool takes a `tenant_id` argument, but nothing in the agent runtime forces the agent to pass the right tenant. A prompt-injection or LLM hallucination could pass a different `tenant_id`, and the SQL predicate would honor it. In production, the per-tenant predicate must be bound to the authenticated identity at the checkpointer layer and the retrieval layer, not at the tool argument layer. The named mitigation: per-tenant `thread_id` namespacing in the checkpointer (e.g., `thread_id = f"{tenant_id}:{user_thread_id}"`), Postgres row-level security on the checkpointer table, and binding the `tenant_id` into the `RunnableConfig.configurable` so it cannot be overridden by an LLM-generated tool argument. The Cross-Tenant Isolation chapter in Production §3.2 walks the five surfaces.
+**(1) The per-tenant predicate is in the tool, not enforced at the checkpointer or the retrieval layer.** The `lookup_account` tool takes a `tenant_id` argument, but nothing in the agent runtime forces the agent to pass the right tenant. A prompt-injection or LLM hallucination could pass a different `tenant_id`, and the SQL predicate would honor it. In production, the per-tenant predicate must be bound to the authenticated identity at the checkpointer layer and the retrieval layer, not at the tool argument layer. The named mitigation: per-tenant `thread_id` namespacing in the checkpointer (e.g., `thread_id = f"{tenant_id}:{user_thread_id}"`), Postgres row-level security on the checkpointer table, and binding the `tenant_id` into the `RunnableConfig.configurable` so it cannot be overridden by an LLM-generated tool argument. The Cross-Tenant Isolation section in Production §3.2 walks the five surfaces.
 
 **(2) The action provenance chain is missing.** There is no signed action chain. If a regulator asks "who authorized this $750 refund," the trail consists of (a) the user's HTTP session, which may not be signed; (b) the LLM's reasoning, which is not signed; (c) the human approval, which is not bound to a user identity; (d) the tool-call result, which is not signed. In production, each step in the chain must be cryptographically signed (KMS-backed; HSM for the chain anchor; ECDSA P-256 or Ed25519), and the resulting chain must be WORM-stored (S3 Object Lock Compliance mode for SEC 17a-4 retention). The Audit-Evidence Cookbook in Production §3.4 covers what gets signed, where, by whom.
 
@@ -2396,7 +2396,7 @@ A passing answer hits 5/6 with no fails. Partial-pass hits 4/6 with at most one 
 
 ## §1.17 Mentor Checkpoint #1
 
-You have completed the Foundations chapter and attempted the knowledge gate. Before continuing to Patterns, schedule **~30 minutes** with your team lead or mentor — someone who has shipped at least one production agent. The mentor checkpoint is not a re-test of the gate. It is a structured conversation about where the vocabulary felt wobbly and where to focus your next reading.
+You have completed Part I (Foundations) and attempted the knowledge gate. Before continuing to Patterns, schedule **~30 minutes** with your team lead or mentor — someone who has shipped at least one production agent. The mentor checkpoint is not a re-test of the gate. It is a structured conversation about where the vocabulary felt wobbly and where to focus your next reading.
 
 **Suggested agenda for the 30-minute conversation.**
 
@@ -2405,35 +2405,35 @@ You have completed the Foundations chapter and attempted the knowledge gate. Bef
 - **Minute 10–15.** Which of the three identity problems is novel to you? Most new hires have never thought about Problem 3 (agent-on-behalf-of-user) before reading Foundations.
 - **Minute 15–20.** Which of the six recipes feels most familiar from your prior work? (This will determine which Patterns chapters you read first.)
 - **Minute 20–25.** What is the customer engagement that will likely test this knowledge first? The mentor's read on which customers in the pipeline match your vocabulary is the most valuable input here.
-- **Minute 25–30.** What is the one thing the Foundations chapter should have taught you but did not? (Honest feedback for the curriculum.)
+- **Minute 25–30.** What is the one thing Part I (Foundations) should have taught you but did not? (Honest feedback for the curriculum.)
 
-**If no mentor is available.** Use the rubric in §1.16 to self-evaluate. Be honest. Self-assessment has documented false-positive rates above 50% in similar curricula; if you find yourself rating every criterion as `pass`, re-read the chapter and try again. The gate is harder than it looks; passing it the first time is uncommon.
+**If no mentor is available.** Use the rubric in §1.16 to self-evaluate. Be honest. Self-assessment has documented false-positive rates above 50% in similar curricula; if you find yourself rating every criterion as `pass`, re-read the Part and try again. The gate is harder than it looks; passing it the first time is uncommon.
 
 ---
 
 ## §1.17.1 First 30 days — a focused reading and practice plan
 
-If you are reading this in your first week at OPAQUE Systems (or in your first week at any agent-adjacent role), the chapter you just finished is the foundation. The next 30 days have a shape worth committing to. The plan below is the one Aaron's team has worked out as the modal new-hire path; adjust for your role and prior experience.
+If you are reading this in your first week at OPAQUE Systems (or in your first week at any agent-adjacent role), the Part you just finished is the foundation. The next 30 days have a shape worth committing to. The plan below is the one Aaron's team has worked out as the modal new-hire path; adjust for your role and prior experience.
 
-**Week 1 (the chapter you just finished).** Read 01-foundations.md end-to-end. Attempt the §1.16 gate for your role track. Schedule the 30-minute mentor checkpoint (§1.17). Begin daily Anki review on the 60–80-card deck. **Expected outcomes:** vocabulary intact; the five disambiguating questions feel natural to ask; the three identity problems are distinct in your head; the seven topologies and six recipes are named without hesitation.
+**Week 1 (the Part you just finished).** Read 01-foundations.md end-to-end. Attempt the §1.16 gate for your role track. Schedule the 30-minute mentor checkpoint (§1.17). Begin daily Anki review on the 60–80-card deck. **Expected outcomes:** vocabulary intact; the five disambiguating questions feel natural to ask; the three identity problems are distinct in your head; the seven topologies and six recipes are named without hesitation.
 
 **Week 2 (start Patterns).** Begin 02-patterns.md. The chapters to read first depend on your role. For SE/SC: §2.4 Identity / Agent AuthZ; §2.7 Governance (incl. Cross-Tenant Isolation Category 1); §2.1 Framework comparison matrix. For PM: §2.3 use-case recipe walkthroughs; the PRD-section templates. Continue daily Anki. **Expected outcomes:** you can defend a framework choice; you can sketch a per-tenant isolation pattern; you understand DPoP / RAR / CIBA / step-up at depth.
 
 **Week 3 (continue Patterns).** Finish 02-patterns.md. Pay particular attention to the cross-tenant isolation surfaces (retriever, cache, checkpointer, observability, model) and the seven-topology decision tree. Begin shadow-attending discovery calls if you can. **Expected outcomes:** you can pick a topology from a customer brief and defend it; you can name the cross-tenant isolation pattern for a multi-tenant ISV use case; you have a working draft of the framework matrix for your top-3 prospect engagements.
 
-**Week 4 (Production overview + first independent customer touchpoint).** Begin 03-production.md. Focus on the 10-axis deployment matrix; per-regime depth for whichever regimes match your top prospects; the Audit-Evidence Cookbook chapter. Attempt your first independent customer pre-brief using co-meetings (or your role-equivalent prep tool). **Expected outcomes:** you can walk a CISO through the deployment-shape decision; you can defend a deployment against one specific regulator clause; you have completed at least one customer-facing brief that a veteran approves of.
+**Week 4 (Production overview + first independent customer touchpoint).** Begin 03-production.md. Focus on the 10-axis deployment matrix; per-regime depth for whichever regimes match your top prospects; the Audit-Evidence Cookbook section. Attempt your first independent customer pre-brief using co-meetings (or your role-equivalent prep tool). **Expected outcomes:** you can walk a CISO through the deployment-shape decision; you can defend a deployment against one specific regulator clause; you have completed at least one customer-facing brief that a veteran approves of.
 
 **Day 30 milestone — the capstone.** End-of-month, attempt the Production capstone task (Production Knowledge Gate Track 3): all three role tracks (SE / SC / PM) produce artifacts against the same customer brief. If you are a generalist, all three are your responsibility; if you are role-specialized, you produce your one and review the others. The capstone is the signal that onboarding is complete. The day-60–90 horizon is when the capstone is fully realistic; day 30 is the first credible attempt.
 
 **Throughout.** Daily Anki review for the first 14 days; tri-daily for the next 30. Schedule the four mentor checkpoints from the design spec: post-Foundations (~30 min, you just did this), post-Patterns-Identity (~20 min on FGA / DPoP / agent-on-behalf-of articulation), pre-Production whiteboard (~45 min practice with a veteran SE), post-Production gate (~45 min review of PRD / brief / whiteboard photo). Total mentor time across the curriculum: ~2.5 hours. The new-hire failure mode this prevents is feeling ready alone.
 
-The honest framing: **Foundations is two weeks of absorbable core; Patterns and Production are multi-month ongoing reference plus capstone-when-ready around Day 60–90.** Do not let anyone tell you the whole 500-page Field Guide is two-week-readable. The Foundations chapter you just finished is.
+The honest framing: **Foundations is two weeks of absorbable core; Patterns and Production are multi-month ongoing reference plus capstone-when-ready around Day 60–90.** Do not let anyone tell you the whole 500-page Field Guide is two-week-readable. Part I you just finished is.
 
 ---
 
 ## §1.17.2 Why agents are not "just better workflows"
 
-A perspective worth holding before you leave the chapter. The most common framing mistake from experienced enterprise-software practitioners is to treat agents as "just better workflows" or "just smarter automation." This framing produces wrong governance answers, wrong sales conversations, and wrong PRDs. The right framing has three shifts.
+A perspective worth holding before you leave this Part. The most common framing mistake from experienced enterprise-software practitioners is to treat agents as "just better workflows" or "just smarter automation." This framing produces wrong governance answers, wrong sales conversations, and wrong PRDs. The right framing has three shifts.
 
 **Shift 1 — Non-determinism is constitutive, not a bug.** Traditional workflows are deterministic by design — given the same input, you get the same output. Agents are non-deterministic — the same input can produce different outputs across runs because the LLM's reasoning is stochastic. This is **not a bug to be fixed**; it is the property that makes agents capable of handling novel situations. Engineering teams that treat non-determinism as a defect spend their time chasing it and ship slow. Engineering teams that treat non-determinism as a property design around it: structured outputs, eval-first observability, replay, golden datasets, HITL on consequential actions. The right pattern is *constrain the action space, not the reasoning*.
 
@@ -2481,7 +2481,7 @@ A short map of where the rest of this Field Guide carries forward what Foundatio
 | §1.6 Three-layer protocol stack | MCP at depth (Auth, elicitation, sampling); A2A at depth | MCP signature / attestation / SLSA provenance; supply-chain controls |
 | §1.7 Seven topologies | Per-topology state graph + decision tree + named harnesses | Topology choice as deployment shape input |
 | §1.8 Observability | Per-platform comparison; OTel + OpenInference | Audit-trail integrity; what surfaces to which SIEM |
-| §1.9 Three identity problems | Identity / Agent AuthZ chapter (depth) | Action provenance + signed action chain (Audit-Evidence Cookbook) |
+| §1.9 Three identity problems | Identity / Agent AuthZ section (depth) | Action provenance + signed action chain (Audit-Evidence Cookbook) |
 | §1.10 Six recipes | Per-recipe full state graph + customer engineering blog citations | Per-recipe Audit-Evidence Pattern + STRIDE-A threat model |
 | §1.11 Five categorical surfaces | 14-mode failure taxonomy + per-mode mitigations | 18-surface catalog + recipe × surface matrix + per-surface regime tags |
 | §1.12 Three industries + Sovereign | Persona × recipe × segment-variant matrix | Per-regime depth chapters (DORA / EU AI Act / SR 11-7 / HIPAA / SAMA / MAS / etc.) |
@@ -2492,7 +2492,7 @@ If you remember nothing else: **Foundations is the vocabulary; Patterns is the d
 
 ## §1.18 Sources cited
 
-Citations are tagged per the design spec's 10 evidence classes. Every factual claim in this chapter traces to one of these tags: `[primary-regulatory]`, `[independently-audited]`, `[vendor-contractual]`, `[vendor-public]`, `[named-incident]`, `[customer-produced-evidence]`, `[corroborated]`, `[reference design]`, `[architectural inference]`, `[benchmark]`.
+Citations are tagged per the design spec's 10 evidence classes. Every factual claim in this Part traces to one of these tags: `[primary-regulatory]`, `[independently-audited]`, `[vendor-contractual]`, `[vendor-public]`, `[named-incident]`, `[customer-produced-evidence]`, `[corroborated]`, `[reference design]`, `[architectural inference]`, `[benchmark]`.
 
 ### Vendor-public agent definitions
 
@@ -2583,7 +2583,7 @@ Citations are tagged per the design spec's 10 evidence classes. Every factual cl
 
 ## §1.19 Anki deck pointer
 
-A spaced-retrieval deck of ~60–80 cards accompanies Foundations. Cards cover the must-retain vocabulary surfaced in this chapter — the five-point autonomy spectrum, the ten tiers, the three-layer protocol stack, the three scopes of state, the three identity problems, the seven topologies, the six recipes with anchor customers, the ten named incidents, the LangGraph primitives, and the citation taxonomy.
+A spaced-retrieval deck of ~60–80 cards accompanies Foundations. Cards cover the must-retain vocabulary surfaced in this Part — the five-point autonomy spectrum, the ten tiers, the three-layer protocol stack, the three scopes of state, the three identity problems, the seven topologies, the six recipes with anchor customers, the ten named incidents, the LangGraph primitives, and the citation taxonomy.
 
 **File:** `book/05-anki-deck/01-foundations.apkg`.
 
@@ -2593,7 +2593,7 @@ A spaced-retrieval deck of ~60–80 cards accompanies Foundations. Cards cover t
 
 ## §1.20 What you should be able to do now
 
-Re-read the outcomes you set out with at the start of the chapter:
+Re-read the outcomes you set out with at the start of this Part:
 
 - **SE / SC.** Disambiguate agent from chatbot / RAG / workflow / pipeline. Sketch the ten-tier stack on a whiteboard. Name the three protocol-stack layers. Pick a topology from a 1-paragraph brief. Name three named incidents and the obvious governance risk. Recognize the three identity problems and one named-product solution for each.
 - **PM.** Write a JTBD statement for an agent feature. Distinguish buyer from end-user persona. Identify which of the six recipes a customer's request fits. Name the dominant governance category. Distinguish vendor-disclosed metrics from audit-grade evidence.
@@ -2601,19 +2601,19 @@ Re-read the outcomes you set out with at the start of the chapter:
 
 If you can do all of these from memory and applied the rubric in §1.16 to your own answer with a passing score, you are ready for Patterns. If not, the §1.16 retake mechanic specifies which sections to re-read.
 
-The next chapter — **02-patterns.md** — extends every section here with named-component depth, the seven-topology decision tree, per-recipe state graphs, the cross-tenant isolation chapter, the identity / agent AuthZ chapter, and per-regime compliance depth. The vocabulary you carry into Patterns is the vocabulary this chapter taught.
+The next Part — **02-patterns.md** — extends every section here with named-component depth, the seven-topology decision tree, per-recipe state graphs, the cross-tenant isolation section, the identity / agent AuthZ section, and per-regime compliance depth. The vocabulary you carry into Patterns is the vocabulary this Part taught.
 
 ### §1.20.1 A short closing perspective
 
 A few last things worth saying before you turn the page.
 
-**The vocabulary in this chapter is more durable than the products it describes.** Anthropic's workflow-vs-agent distinction is a clean conceptual cut that will outlast individual model deprecations. The ten-tier stack is a mental model that will outlast individual vendor choices. The three identity problems will outlast individual IDP products. The seven topologies will outlast the specific harnesses that implement them. The six recipes will outlast specific customer engagements. Learning the vocabulary is investing in something that lasts; learning specific product names is investing in something that decays on a 12–24 month cycle. Spend your retention budget accordingly.
+**The vocabulary in this Part is more durable than the products it describes.** Anthropic's workflow-vs-agent distinction is a clean conceptual cut that will outlast individual model deprecations. The ten-tier stack is a mental model that will outlast individual vendor choices. The three identity problems will outlast individual IDP products. The seven topologies will outlast the specific harnesses that implement them. The six recipes will outlast specific customer engagements. Learning the vocabulary is investing in something that lasts; learning specific product names is investing in something that decays on a 12–24 month cycle. Spend your retention budget accordingly.
 
-**The named-incident catalog is the most under-respected curriculum in this chapter.** Most new hires speed through §1.11 because the incidents are well-known. They are well-known to you. They are not well-known to most customer engineering teams. Walking a customer through Slack AI, EchoLeak, and ConfusedPilot — slowly, with the architecture of each attack drawn on a whiteboard — is one of the highest-impact things a Sales Engineer can do in a first technical session. Spend the time. Memorize the incidents. Be the person in the room who can explain what zero-click prompt injection means and why it changed how Microsoft 365 Copilot was reviewed.
+**The named-incident catalog is the most under-respected curriculum in this Part.** Most new hires speed through §1.11 because the incidents are well-known. They are well-known to you. They are not well-known to most customer engineering teams. Walking a customer through Slack AI, EchoLeak, and ConfusedPilot — slowly, with the architecture of each attack drawn on a whiteboard — is one of the highest-impact things a Sales Engineer can do in a first technical session. Spend the time. Memorize the incidents. Be the person in the room who can explain what zero-click prompt injection means and why it changed how Microsoft 365 Copilot was reviewed.
 
-**The Klarna CEO reversal is the most under-respected story in this chapter.** Most readers nod past it. The lesson is deeper than "Klarna was a little optimistic." The lesson is that **every public agent metric you have ever read** was vendor-disclosed marketing material, and **none of it would survive an MRM audit**. The first time you have to defend an agent deployment to a Model Risk Management committee, you will reach for the public metrics and discover that they evaporate. The Klarna reversal is the canonical "we got it wrong" story precisely because Klarna was the canonical "look how well this works" story. Both are true: the deployment is real and meaningful and useful; the metrics-at-launch are not validation evidence. Hold both ideas at once.
+**The Klarna CEO reversal is the most under-respected story in this Part.** Most readers nod past it. The lesson is deeper than "Klarna was a little optimistic." The lesson is that **every public agent metric you have ever read** was vendor-disclosed marketing material, and **none of it would survive an MRM audit**. The first time you have to defend an agent deployment to a Model Risk Management committee, you will reach for the public metrics and discover that they evaporate. The Klarna reversal is the canonical "we got it wrong" story precisely because Klarna was the canonical "look how well this works" story. Both are true: the deployment is real and meaningful and useful; the metrics-at-launch are not validation evidence. Hold both ideas at once.
 
-**Identity Problem 3 is the new one.** Of everything in this chapter, the single most novel concept for most readers is **the agent acting on behalf of a user as a distinct identity problem from agent identity and user identity**. Problem 1 was solved in the 2000s. Problem 2 was solved in the 2010s and 2020s. Problem 3 is what 2025–2026 OAuth standards (DPoP, PAR, RAR, CIBA, step-up) and 2025-launched products (Entra Agent ID, Okta for AI Agents, Auth0 for AI Agents) are operationalizing now. Most customer engineering teams have not noticed Problem 3 yet. When you walk them through it, you sound like you are from the future. Make sure you are accurate.
+**Identity Problem 3 is the new one.** Of everything in this Part, the single most novel concept for most readers is **the agent acting on behalf of a user as a distinct identity problem from agent identity and user identity**. Problem 1 was solved in the 2000s. Problem 2 was solved in the 2010s and 2020s. Problem 3 is what 2025–2026 OAuth standards (DPoP, PAR, RAR, CIBA, step-up) and 2025-launched products (Entra Agent ID, Okta for AI Agents, Auth0 for AI Agents) are operationalizing now. Most customer engineering teams have not noticed Problem 3 yet. When you walk them through it, you sound like you are from the future. Make sure you are accurate.
 
 **LangGraph is the focus, but the substrate matters more than the framework.** The reason this book is titled "Enterprise AI Agents on LangGraph" rather than "Enterprise AI Agents" is honest — the named-deployment evidence at scale clusters around LangGraph. But the substrate questions — *where does my data go, where does my prompt cache live, where does my identity terminate, where does my action provenance get signed* — are framework-agnostic. The right framing in customer conversations is: "LangGraph is the orchestration layer we recommend because of A, B, and C. The questions you should be asking are about the substrate layers underneath — tier 10 (LLM), tier 9 (retrieval), tier 7 (identity), tier 5 (state). The framework choice is one decision; the substrate decisions are five or ten more."
 
@@ -2623,17 +2623,17 @@ A few last things worth saying before you turn the page.
 
 **This book has a point of view.** It is not neutral. It commits to the Anthropic workflow-vs-agent discipline. It commits to LangGraph as the focal framework. It commits to vendor-disclosed metrics being non-evidence under SR 11-7. It commits to the three-layer protocol stack as the canonical mental model. It commits to "data-leak surface" / "leakage pathway" as the public vocabulary. It commits to Sovereign deployment being structurally a fit and operationally a `[zero]`-deployment segment. These are choices, not consensus. Where the book is taking a position, it says so. Where the evidence is thin, it says `[evidence-zero]` or `[reference design]` or `[architectural inference]`. The author affiliation is disclosed in `CONFLICTS.md`. The book is one input among many; it is not a substitute for vendor due diligence.
 
-That last point is worth repeating one more time before you close the chapter. **This is not a procurement-evaluation document.** It is an educational reference. The procurement decision a customer makes is theirs; the technical foundation this book gives you is yours to bring to the conversation.
+That last point is worth repeating one more time before you close this Part. **This is not a procurement-evaluation document.** It is an educational reference. The procurement decision a customer makes is theirs; the technical foundation this book gives you is yours to bring to the conversation.
 
 Welcome to the work.
 
 — *A. Fulkerson*
 
-*Aaron Fulkerson is the CEO of OPAQUE Systems. His affiliation is disclosed in the author bio (in `00-introduction.md`) and in `CONFLICTS.md` (at the repo root). His point of view on the substrate-vs-graph-layer distinction is named in `CONFLICTS.md`. OPAQUE Systems is named four times in the body of this chapter — only where the architecture surfaces a trust- or governance-gap that has a named industry standard (RATS, EAT, EAR, SPIFFE) and OPAQUE happens to be a vendor implementing that specific standard. Anchored to the standard, not to the marketing. See `CONFLICTS.md` §1 for the rule and the cadence cap.*
+*Aaron Fulkerson is the CEO of OPAQUE Systems. His affiliation is disclosed in the author bio (in `00-introduction.md`) and in `CONFLICTS.md` (at the repo root). His point of view on the substrate-vs-graph-layer distinction is named in `CONFLICTS.md`. OPAQUE Systems is named four times in the body of this Part — only where the architecture surfaces a trust- or governance-gap that has a named industry standard (RATS, EAT, EAR, SPIFFE) and OPAQUE happens to be a vendor implementing that specific standard. Anchored to the standard, not to the marketing. See `CONFLICTS.md` §1 for the rule and the cadence cap.*
 
 ---
 
-*End of Chapter 1 — Foundations.*
+*End of Part I — Foundations.*
 
-*Next: Chapter 2 — Patterns.*
+*Next: Part II — Patterns.*
 

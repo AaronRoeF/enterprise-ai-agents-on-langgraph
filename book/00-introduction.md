@@ -45,9 +45,9 @@ The book is titled *Enterprise AI Agents on LangGraph* because **LangGraph is th
 
 ## Who this is for
 
-The reader floor for Foundations (Chapter 1) is intentionally low. You are assumed to know what an LLM is, what an API is, what JSON is, what OAuth / SSO is at a conceptual level, and the names Postgres and Redis. You have probably built a chatbot demo or run through a RAG tutorial. You have NOT deployed an agent in production. You do not need to be a Python engineer to read Foundations — there is an explicit reading path for the non-coder.
+The reader floor for Foundations (Part I) is intentionally low. You are assumed to know what an LLM is, what an API is, what JSON is, what OAuth / SSO is at a conceptual level, and the names Postgres and Redis. You have probably built a chatbot demo or run through a RAG tutorial. You have NOT deployed an agent in production. You do not need to be a Python engineer to read Foundations — there is an explicit reading path for the non-coder.
 
-By the time you finish all three chapters, you should be able to hold a discovery call with a Tier-1 FSI prospect, sketch the architecture on a whiteboard, name the failure modes the prospect cares about, defend the framework recommendation against an alternative, and articulate which mitigations live at which architectural layer.
+By the time you finish all three Parts, you should be able to hold a discovery call with a Tier-1 FSI prospect, sketch the architecture on a whiteboard, name the failure modes the prospect cares about, defend the framework recommendation against an alternative, and articulate which mitigations live at which architectural layer.
 
 The intended audiences:
 
@@ -75,7 +75,7 @@ The honest framing: Foundations in the first two weeks; Patterns and Production 
 Already deep in this space? Pick the tier that matches your level and start there.
 
 - **Patterns first** if you already know what an agent is, you have written or read LangGraph code, you can name a few of the canonical topologies, and you want the deployment-depth recipe walkthroughs and the named-vendor stack.
-- **Production first** if you are an experienced practitioner — you have deployed agents, you know the seven LangGraph topologies, you know the six recipe families, and you want the 10-axis deployment matrix, the per-regime regulatory depth, the cross-tenant isolation chapter, the audit-evidence cookbook, and the operational-lifecycle role-play.
+- **Production first** if you are an experienced practitioner — you have deployed agents, you know the seven LangGraph topologies, you know the six recipe families, and you want the 10-axis deployment matrix, the per-regime regulatory depth, the cross-tenant isolation section, the audit-evidence cookbook, and the operational-lifecycle role-play.
 
 Each tier opens with an explicit prerequisite map — what you should know going in, what you will know coming out, what to revisit if a concept feels hazy. Each tier is self-contained in the sense that you do not need to have read the prior tier linearly to follow it, but you do need to recognize the vocabulary the prior tier established.
 
@@ -90,13 +90,13 @@ Foundations is a single file with two explicit reading paths inside it.
 - **Engineer-track** (SE / SC with engineering background, EA on-ramp, anyone who writes Python today or will next month) — reads the code primitives in full and the ASCII state graphs in full.
 - **PM-track** (Product, GTM, Sales, partner managers, anyone who does not write Python and does not plan to) — reads the conceptual narrative in full and the concept boxes at every primitive. **You may visually skim or skip the Python code blocks throughout this book** — they are visually identifiable by their indented fixed-width fenced format, and skipping them will not break the conceptual thread. The concept box immediately above or below each code block carries the meaning.
 
-Both tracks share the same conceptual narrative, the same diagrams, the same JTBD framings, the same incident anchor primer, and the same exit gate. They differ only in how much code each is asked to absorb. Both tracks re-merge for the Patterns chapter forward; the PM-track reader is expected to have absorbed the code primitives at concept level via the skip-markers, and the Engineer-track reader is expected to have absorbed the PM-vocabulary (JTBD, ICP, ACV, buyer persona vs end-user persona) at the same depth.
+Both tracks share the same conceptual narrative, the same diagrams, the same JTBD framings, the same incident anchor primer, and the same exit gate. They differ only in how much code each is asked to absorb. Both tracks re-merge for Part II forward; the PM-track reader is expected to have absorbed the code primitives at concept level via the skip-markers, and the Engineer-track reader is expected to have absorbed the PM-vocabulary (JTBD, ICP, ACV, buyer persona vs end-user persona) at the same depth.
 
 If the dual-path treatment fails for you in the field — if you are a PM-track reader and the skip-markers do not actually scaffold you through Foundations — please file an issue. A separate `01a-foundations-pm.md` companion file is the planned v1.5 fallback if the dual-path approach does not hold up to real onboarding.
 
 ### Annotations used throughout
 
-One convention used across every chapter is worth introducing here, because you will see it on every ASCII state graph from Foundations forward:
+One convention used across every Part is worth introducing here, because you will see it on every ASCII state graph from Foundations forward:
 
 ```
   [CKP]  — checkpoint write (the runtime persists state at this point)
@@ -111,7 +111,7 @@ These four annotations carry the same meaning everywhere they appear. Once you h
 
 ## The three tiers at a glance
 
-### Foundations — Chapter 1 (`01-foundations.md`)
+### Foundations — Part I (`01-foundations.md`)
 
 Approximately 2,500 lines. Reading time ~6–8 hours core read, two-week absorbable. Approximately 85 glossary terms introduced.
 
@@ -127,7 +127,7 @@ What you will get:
 - **The six control boundaries** that define what "data-leak surface" means at conceptual depth.
 - **The buyer-vs-end-user persona disambiguation** — taught in the body, not just at the gate.
 
-### Patterns — Chapter 2 (`02-patterns.md`)
+### Patterns — Part II (`02-patterns.md`)
 
 Approximately 3,870 lines. Reading time ~12–15 hours, treated as extended reference.
 
@@ -136,20 +136,20 @@ What you will get:
 - **The framework landscape at procurement-grade depth** — six frameworks treated seriously (LangGraph anchor, CrewAI, AutoGen / AG2 distinguished, Microsoft Agent Framework, OpenAI Agents SDK, LlamaIndex Workflows, Semantic Kernel), with a one-page exclusion appendix for the tracked-not-deep set (Pydantic AI, Smol Agents, DSPy, Mastra, Agno, Letta).
 - **The seven canonical LangGraph topologies** with named-component ASCII state graphs and a one-page decision tree — ReAct, ReAct + Reflexion, Plan-and-Execute, Supervisor, Hierarchical, Agentic RAG, Network / Swarm (renamed from "Multi-Agent Collaboration" to match the LangGraph docs).
 - **The six recipe families at deployment depth** with verbatim customer-voice quotes wherever public engineering blogs and Interrupt 2025 talks made them available.
-- **The Identity / Agent AuthZ chapter** — four IDPs (Entra Agent ID, Okta for AI Agents, Auth0 for AI Agents, Ping); five OAuth-2.x primitives relevant to agents (DPoP, PAR, RAR, CIBA, step-up); the MCP Authorization spec (OAuth-2.1 + DCR + RFC 9728); the agent-identity vs agent-on-behalf-of-user disambiguation; the eight FGA products (OpenFGA, Cedar / AWS Verified Permissions, Topaz, Okta FGA, Auth0 FGA, Permit.io, Oso, Styra).
+- **The Identity / Agent AuthZ section** — four IDPs (Entra Agent ID, Okta for AI Agents, Auth0 for AI Agents, Ping); five OAuth-2.x primitives relevant to agents (DPoP, PAR, RAR, CIBA, step-up); the MCP Authorization spec (OAuth-2.1 + DCR + RFC 9728); the agent-identity vs agent-on-behalf-of-user disambiguation; the eight FGA products (OpenFGA, Cedar / AWS Verified Permissions, Topaz, Okta FGA, Auth0 FGA, Permit.io, Oso, Styra).
 - **The Cross-Tenant Isolation primer** — the five surfaces (retriever, cache, checkpointer, observability, model) with named-component mitigations per surface.
 - **The ICP industry deep-dive** — FSI sub-segments (payments, wealth, research, institutional asset management); two ISV sub-motions at full depth (horizontal SaaS, developer tools); Healthcare reference-design and Sovereign structural-fit-only treatment.
 - **The hyperscaler peer ref-arch comparison** at category level — AgentCore, Vertex Agent Engine, Foundry Agent Service, Salesforce Agentforce.
 - **Control plane / data plane separation** — taught at Patterns depth because the BYOC compliance decision is gate-zero for FSI conversations and lands too late if left for Production.
 
-### Production — Chapter 3 (`03-production.md`)
+### Production — Part III (`03-production.md`)
 
 Approximately 5,202 lines plus 17 appendices. Reading time ~15–20 hours, extended-canon ongoing reference.
 
 What you will get:
 
 - **The 10-axis deployment-shape matrix** — cloud locus, identity perimeter, data perimeter, trace egress, secret perimeter, network egress, model perimeter, tool-call perimeter, HITL surface, support / break-glass — across the LangGraph Platform shapes (Cloud SaaS, BYOC AWS-only, Self-Hosted Enterprise, Standalone Container) plus the CSP-managed and sovereign / air-gap rows with explicit `[gap]` markers.
-- **The Cross-Tenant Isolation chapter at depth** — five surfaces with worked FGA models for Text-to-SQL and Embedded SaaS Copilot recipes.
+- **The Cross-Tenant Isolation section at depth** — five surfaces with worked FGA models for Text-to-SQL and Embedded SaaS Copilot recipes.
 - **The Integration Cookbook** — customer existing IAM + secrets at full depth (Entra, Okta, Auth0, Ping, ForgeRock, CyberArk, SailPoint, HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, External Secrets Operator, HSM-backed signing); observability, policy, lineage, CI/CD, egress at compressed reference depth.
 - **The Audit-Evidence Cookbook** — what gets signed, where, by whom; what gets retained, where, how long; what surfaces to which SIEM in which format; reproducibility; what the examiner sees on examination day; the read-trail (audit-log-of-the-audit-log); incident response runbook; break-glass; exit plan; per-recipe Audit-Evidence Pattern (six artifacts); per-recipe Evidence Index.
 - **The per-regime regulatory depth chapters** — DORA, GDPR, EU AI Act, NIS2, SR 11-7, OCC, FRB, NYDFS Part 500, SEC 17a-4, FINRA, SEC Reg S-P, MiFID II + RTS 6, FedRAMP, HIPAA, PCI DSS 4.0, SAMA, DFSA, MAS, HKMA, PDPA, PIPL, DPDPA, UAE PDPL — with the three to eight most operative articles per regime cited verbatim and mapped to named components.
@@ -158,8 +158,8 @@ What you will get:
 - **The hyperscaler comparison at depth** — moved to a Production appendix to keep the linear read path focused.
 - **The Klarna CEO May 2025 reversal** — as the canonical operational-lifecycle case study; the strongest available "vendor-disclosed launch metric did not survive one year" anchor in the public corpus.
 - **The insurance gap analysis** — zero LangGraph insurance footprint, 68% generative / agentic adoption, 42% abandonment rate; what it implies for framework selection in evidence-thin verticals.
-- **The Data Residency Reasoning chapter** — five sovereignty axes × per-region regulatory landscape × sovereign cloud option matrix.
-- **The PHI-in-scope reference deployment chapter** — every claim `[reference design]`-tagged; no LangGraph production deployment touches PHI as of publication.
+- **The Data Residency Reasoning section** — five sovereignty axes × per-region regulatory landscape × sovereign cloud option matrix.
+- **The PHI-in-scope reference deployment section** — every claim `[reference design]`-tagged; no LangGraph production deployment touches PHI as of publication.
 - **The 4-event operational-lifecycle role-play** — EchoLeak response, Claude version-swap MRM event, sub-processor change notification, ECB examination evidence package.
 - **The capstone task** — all three roles (SE / SC / PM) produce artifacts against the same customer brief that have to fit together. The integration signal single-role gates miss.
 
@@ -169,7 +169,7 @@ What you will get:
 
 ### The five questions every tier answers
 
-Every tier answers the same five reader questions at appropriate depth. The questions are an internal-tracking scaffold; the published chapters present chapter structure, not "the five questions" as an organizing principle. But it is worth knowing what scaffold the chapters were written against, because it lets you cross-reference at depth.
+Every tier answers the same five reader questions at appropriate depth. The questions are an internal-tracking scaffold; the published Parts present Part structure, not "the five questions" as an organizing principle. But it is worth knowing what scaffold the Parts were written against, because it lets you cross-reference at depth.
 
 1. What are all the **components** of an enterprise AI agent stack?
 2. What are the **popular frameworks**, with particular emphasis on open source and LangGraph?
@@ -194,7 +194,7 @@ At four named points in the book, the reader is invited to spend 20–45 minutes
 The four checkpoints, with approximate mentor time per reader:
 
 1. **Post-Foundations gate** — ~30 minutes — mentor review of JTBD framing.
-2. **Post-Patterns Identity chapter** — ~20 minutes — confirm FGA / DPoP / agent-on-behalf-of-user articulation.
+2. **Post-Part II Identity section** — ~20 minutes — confirm FGA / DPoP / agent-on-behalf-of-user articulation.
 3. **Pre-Production whiteboard** — ~45 minutes — practice whiteboard with a veteran SE.
 4. **Post-Production gate** — ~45 minutes — mentor review of PRD or brief or whiteboard photo.
 
@@ -288,7 +288,7 @@ If you are reading this book as a procurement evaluator, please read `CONFLICTS.
 
 This book exists because **Aaron Fulkerson decided to write the resource he wished he'd had** — for himself, for the SE / SC / PM hires he's onboarded, and for the broader practitioner community. Aaron directed the methodology, set the editorial discipline (the citation-evidence taxonomy, the standards-anchored OPAQUE-mention rule, the no-procurement-doc framing, the failure-modes-named principle), and made the calls on what shipped and what got cut. He is the author of record.
 
-He did not type every word. This Field Guide was assembled with substantial help from large-language-model-based agents — specifically, an autonomous research-and-drafting pipeline running Anthropic Claude under Aaron's direction. That fact matters, because **AI agents (used well) do not invent knowledge; they synthesize it from the corpus they have read.** The corpus this pipeline drew on includes the open-source community's READMEs, the framework documentation, the customer-engineering blog posts, the academic papers, the regulatory texts, the conference talks (Interrupt 2025 and many more), the Slack threads where practitioners have argued these patterns out in public, and the OWASP / MITRE / NIST / ENISA governance taxonomies. **This book stands on that work.** Every claim that traces back to a primary source carries an evidence-class tag in-line so the reader can see which input source was load-bearing for which claim, and the [Sources Cited](book/04-glossary.md) chapter at the end of every Part enumerates them by name.
+He did not type every word. This Field Guide was assembled with substantial help from large-language-model-based agents — specifically, an autonomous research-and-drafting pipeline running Anthropic Claude under Aaron's direction. That fact matters, because **AI agents (used well) do not invent knowledge; they synthesize it from the corpus they have read.** The corpus this pipeline drew on includes the open-source community's READMEs, the framework documentation, the customer-engineering blog posts, the academic papers, the regulatory texts, the conference talks (Interrupt 2025 and many more), the Slack threads where practitioners have argued these patterns out in public, and the OWASP / MITRE / NIST / ENISA governance taxonomies. **This book stands on that work.** Every claim that traces back to a primary source carries an evidence-class tag in-line so the reader can see which input source was load-bearing for which claim, and the [Sources Cited](book/04-glossary.md) section at the end of every Part enumerates them by name.
 
 The right thing to do — and the consistent thing to do, given how much of the input is itself open or CC-licensed — is to make this book **equally freely available**. That is why every word is published under [**Creative Commons Attribution-ShareAlike 4.0**](LICENSE) (CC BY-SA 4.0). Remix it. Translate it. Fork it. Improve it. Use it in your own onboarding programs. Quote it back to your CISO. Cite it in your customer-engineering blog. Just keep the attribution chain intact and keep your downstream work under a compatible license, so the next person can build on yours the same way Aaron built on the corpus before him.
 
@@ -329,7 +329,7 @@ The book is published under a 90-day update cadence, including a quarterly gloss
 
 - **Patch (v1.0.1):** Typo fixes, broken-link fixes, citation corrections, minor glossary updates.
 - **Minor (v1.1):** Quarterly cadence — new named components, new regulatory clauses, new incident anchors, model cohort updates.
-- **Major (v2.0):** Structural change — new tier, new chapter, removal of deprecated framework, breaking change to the citation taxonomy.
+- **Major (v2.0):** Structural change — new Part, new section, removal of deprecated framework, breaking change to the citation taxonomy.
 
 ### How to file issues
 
@@ -374,7 +374,7 @@ What this book commits to is the underlying vocabulary, the underlying architect
 So: pick a path.
 
 - If you are new to this and you have two weeks to spend on the core, start with [Foundations](01-foundations.md). The reader floor is intentionally low; the dual-track reading paths are designed for the PM-track reader and the engineer-track reader alike.
-- If you have shipped a few agents and want the deployment-depth recipes, the topology decision tree, the named-vendor stack, the Identity chapter, and the Cross-Tenant Isolation primer, start with [Patterns](02-patterns.md). It assumes the Foundations vocabulary but does not re-teach it; revisit Foundations sections as the cross-references demand.
+- If you have shipped a few agents and want the deployment-depth recipes, the topology decision tree, the named-vendor stack, the Identity section, and the Cross-Tenant Isolation primer, start with [Patterns](02-patterns.md). It assumes the Foundations vocabulary but does not re-teach it; revisit Foundations sections as the cross-references demand.
 - If you are an experienced practitioner and you want the 10-axis deployment matrix, the per-regime regulatory depth, the audit-evidence cookbook, the 14 failure modes at expert depth, the recipe-by-recipe Production deep-dives, the Klarna reversal case study, the operational-lifecycle role-play, and the capstone, start with [Production](03-production.md). It assumes Patterns vocabulary cold.
 
 The community is shipping enterprise agents to production right now. The customers are deploying them right now. The regulators are examining them right now. The new hires are arriving right now. This book exists so that the next one of them arrives ready.
