@@ -16,7 +16,7 @@ license: CC BY-SA 4.0
 **Author:** Aaron Fulkerson
 **License:** Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 **Canonical URL:** https://aaronfulkerson.com/field-guide *(placeholder until published)*
-**GitHub:** https://github.com/aaronfulkerson/enterprise-ai-agents-on-langgraph-field-guide *(placeholder until published)*
+**GitHub:** https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph
 
 > **This is not a procurement-evaluation document.** It is an educational reference. Procurement decisions require independent vendor evaluation (Gartner, Forrester, NIST, ENISA, customer-side technical evaluation). This guide is one input among many; it is not a substitute for vendor due diligence. The full conflict-of-interest disclosure lives in `CONFLICTS.md` at the repository root.
 
@@ -30,21 +30,16 @@ A new Sales Engineer, Solution Consultant, or Product Manager joining a company 
 
 The training material currently available to that new hire is fragmented. Some of it is excellent — the LangChain documentation, the Anthropic prompt-engineering guides, individual customer engineering blogs, the Interrupt 2025 talks, the OWASP and MITRE governance taxonomies, the open-source framework READMEs. Some of it is marketing in disguise — vendor white papers that conflate vendor-disclosed launch metrics with operational evidence, "buyer's guides" that exist to win procurement-vocabulary battles, comparison matrices designed to position the publisher to win. The fragmentation is the problem the new hire inherits. They have to assemble a working model of the field from sources written for incompatible purposes, in incompatible vocabulary, at incompatible levels of evidence-weight, with no scaffolding telling them which sources are controlling and which are rebuttable.
 
-This book is the educational foundation the industry has been missing. It is written for that new hire. It is also written for the broader LangGraph and enterprise-agent community — for practitioners who have been shipping in this space and want a peer-grade reference that names what they already know and fills in what they do not. It is written FOR the community, not AT the community. The tone is welcoming, the citations are honest, and the failure modes are named. The peer-artifact framing is deliberate: the book is not a sales tool dressed up as education. It is education that happens to have been written by someone with a known point of view, who has disclosed that point of view, and who has structured the book so that the editorial discipline is visible to the reader at every claim.
+This book is the educational foundation the industry has been missing. It is written first for the new hire in those roles — but it is also written for anyone in the SE / SC / PM / architect / CISO seat who needs a peer-grade, citation-disciplined reference to the enterprise AI agent landscape as it actually exists today. Written FOR the community, not AT it. The tone is welcoming, the citations are honest, the failure modes are named. The peer-artifact framing is deliberate: this is education that happens to have been written by someone with a known point of view, who has disclosed that point of view in `CONFLICTS.md`, and who has structured the book so the editorial discipline is visible at every claim.
 
-What this book is NOT:
+### What this book is
 
-- It is not a procurement-evaluation document. (See `CONFLICTS.md`.)
-- It is not a marketing piece for any vendor — including the author's company.
-- It is not a vendor pitch. There is no comparison table at the back where one product wins.
-- It is not a guarantee that any of the named deployments referenced herein have been independently audited at the time of reading.
-
-What this book IS:
-
-- A peer-artifact for the LangGraph community.
-- An onboarding-grade reference for new SE / SC / PM hires.
+- A peer-artifact for the broader Enterprise AI Agent and LangGraph practitioner community.
+- An onboarding-grade reference for new Sales Engineer, Solution Consultant, and Product Manager hires.
 - A documented-reality snapshot of state-of-practice as of May 2026.
 - A teaching artifact that names the failure modes, the regulatory clauses, the named components, and the citation-evidence weight behind every claim.
+
+The book is titled *Enterprise AI Agents on LangGraph* because **LangGraph is the reference framework** — the one the deep examples are written against. The reason is evidence, not advocacy: across the eighteen named, customer-disclosed, production-at-scale enterprise agent deployments in the public corpus this book draws from, all eighteen are LangGraph deployments, and LangGraph's primitives (explicit state-machine graphs, durable checkpointing, first-class human-in-the-loop, tight observability integration) map cleanest to the trust, governance, and verifiability requirements that show up in regulated industries. But **the vocabulary, the 10-tier stack, the protocol surfaces (MCP, A2A, AGP), the identity primitives, the governance failure modes, the regulatory mapping, and the audit-evidence patterns are framework-agnostic in the concepts** — valuable regardless of whether your customer (or you) is running LangGraph, AutoGen, CrewAI, Bedrock AgentCore, Azure Foundry Agent Service, Vertex Agent Engine, or something built in-house. The book also names the popular vendors per tier (LLM, retrieval, observability, state, policy, identity, secrets, deploy, compute), gives you the procurement-evaluation question set per framework, and teaches the citation-evidence taxonomy so you can read any vendor's claims — including the author's company's claims — with the right level of skepticism.
 
 ---
 
@@ -286,18 +281,6 @@ Layered on top of evidence-class tags are per-leakage-pathway regime-binding tag
 This book is written under Aaron's own by-line on aaronfulkerson.com. The reader is getting an experienced practitioner's perspective with a known point of view. That point of view is disclosed transparently: Aaron's primary economic interest is the success of OPAQUE Systems, a venture-backed AI infrastructure company. OPAQUE's product positioning intersects with one specific architectural framing in this book — the category-level observation that a subset of agent failure modes reduces to substrate-level remediation properties (TEE attestation, sealed keys, attested network egress, attested workload identity). The book applies a **standards-anchored editorial rule**: in Part I (Foundations), OPAQUE Systems is named in the body four times — only where the architecture surfaces a gap that has a named industry standard (RATS, EAT, EAR, SPIFFE) and OPAQUE happens to be a vendor implementing that specific standard. Anchored to the standard, not to the marketing, and never as a competitive claim. Part II (Patterns) and Part III (Production) bodies contain zero OPAQUE product-positioning references; substrate-level remediation in Production §3.6 is framed at category level only. The full conflict-of-interest disclosure, the editorial rule, the funding source, the peer-review status, and the reader's responsibility to triangulate against independent sources live in [`CONFLICTS.md`](CONFLICTS.md) at the repo root.
 
 If you are reading this book as a procurement evaluator, please read `CONFLICTS.md` before continuing.
-
----
-
-## Not a procurement document — explicit
-
-This needs saying twice, because the first time was at the top of the file and you may have skimmed it.
-
-**The Field Guide is an educational reference.** It is not a procurement-evaluation document. It is not a vendor pitch. It is not a substitute for vendor due diligence, customer-side technical evaluation, independent analyst review (Gartner, Forrester, NIST, ENISA), or your own organization's vendor-risk workflow. Procurement decisions require all of those things — and this book is one input among many to those workflows, not a replacement for them.
-
-The book does not recommend a vendor for any role in the stack. It names the popular vendors per tier (LLM, retrieval, observability, state, policy, identity, secrets, deploy, compute), it gives you the procurement-evaluation question set per framework, and it teaches the citation-evidence taxonomy so you can read vendor claims with the right level of skepticism. The recommendation is yours to make against your own requirements.
-
-If you intend to use this book as input to a vendor-risk assessment or a procurement evaluation, read `CONFLICTS.md` first. The author affiliation, the funding source, the peer-review status, and the explicit list of disciplines applied during authorship are documented there for that exact use case.
 
 ---
 
