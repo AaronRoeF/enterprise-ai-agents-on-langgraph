@@ -111,6 +111,11 @@ Anthropic's umbrella term covering both workflows and agents — any LLM-orchest
 Cross-references: → agent, → workflow.
 First appears in: §1.1.
 
+**Agent Governance Toolkit (AGT)** *(**Foundations** / Patterns)*
+Microsoft's action-layer governance framework for agent runtimes. AGT intercepts the *action* an agent is about to take — a tool call, a state mutation, an external API call — and applies policy to the action itself (allowed / denied, requires approval, requires step-up auth). Sits in the critical path of the action: if the governance check fails, the action does not happen. Foundations §1.10 places AGT in the four-approach governance model (Guardrails → Action-layer → Sandbox → Cryptographic). Patterns §2.5 carries the FGA-bound approval flow and HITL gate depth.
+Cross-references: → Guardrails, → Sandbox, → FGA, → HITL, → governance approaches.
+First appears in: §1.10; deepened in §2.5.
+
 **AGNTCY** *(**Foundations** / Patterns)*
 Cisco / Outshift-led open agent-protocol initiative; the project home for the AGP layer and related components (SLIM messaging, identity, discovery, observability). Donated to the Linux Foundation in July 2025.
 Cross-references: → AGP, → LF AAIF, → three-layer protocol stack.
@@ -830,6 +835,11 @@ Microsoft's 2026 agent framework. AutoGen v0.4 folded into MAF Python preview Q1
 Cross-references: → AutoGen.
 First appears in: §2.1.
 
+**MITRE ATLAS (Adversarial Threat Landscape for AI Systems)** *(**Foundations** / Patterns / Production)*
+MITRE-maintained adversarial threat-and-mitigation knowledge base for AI systems, modelled on the ATT&CK framework. The reference vocabulary for *attack-pattern* discussions with CISOs and SOC analysts — tactics, techniques, mitigations. Includes named case-study writeups for several of the Field Guide's named-incident anchors. URL: [`https://atlas.mitre.org/`](https://atlas.mitre.org/).
+Cross-references: → OWASP LLM Top 10, → OWASP Agentic Top 10, → STRIDE-A, → named-incident [tag], → data-leak surface.
+First appears in: §2.4 / §2.7 / §3.
+
 **MiFID II** *(**Production**)*
 EU Markets in Financial Instruments Directive. Article 16(7), 16(11), and RTS 6 are most operative for algorithmic-trading agent deployments — testing, kill-switch, pre-deployment protocol, governance docs.
 Cross-references: → SR 11-7, → FINRA, → SEC.
@@ -943,6 +953,16 @@ First appears in: §3.13.
 Authorization-as-a-service vendor in the FGA category.
 Cross-references: → FGA, → OpenFGA, → Cedar, → Topaz, → Permit.io, → Styra.
 First appears in: §2.4.
+
+**OWASP Agentic Top 10 (draft v0.2, Dec 2025)** *(**Foundations** / Patterns / Production)*
+Open Worldwide Application Security Project's agent-specific extension to the LLM Top 10. The community-maintained catalogue of the highest-impact agent-specific risks — distinct from the LLM Top 10 because agents add autonomy, tool use, multi-agent communication, and long-term memory. Agentic-AI-6 (Memory Manipulation) is the OWASP-named category for cross-thread / `BaseStore` memory bleeds. Use it as cross-walk vocabulary when a CISO asks for agent-specific coverage. URL: [`https://owasp.org/www-project-agentic-security-initiative/`](https://owasp.org/www-project-agentic-security-initiative/).
+Cross-references: → OWASP LLM Top 10, → MITRE ATLAS, → STRIDE-A, → data-leak surface.
+First appears in: §2.4 / §2.7.
+
+**OWASP LLM Top 10 (2025)** *(**Foundations** / Patterns / Production)*
+Open Worldwide Application Security Project's catalogue of the ten highest-impact LLM application risks. Headline categories include LLM01 Prompt Injection, LLM02 Sensitive Information Disclosure, LLM06 Excessive Agency, LLM08 Vector and Embedding Weaknesses. The reference vocabulary every regulated-industry CISO will name. URL: [`https://owasp.org/www-project-top-10-for-large-language-model-applications/`](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
+Cross-references: → OWASP Agentic Top 10, → MITRE ATLAS, → STRIDE-A, → prompt injection (direct), → prompt injection (indirect).
+First appears in: §2.4 / §2.7.
 
 **OTel GenAI semantic conventions** *(**Foundations** / Patterns / Production)*
 OpenTelemetry's open standard for LLM / agent trace fields. The protocol-layer answer for getting traces from an agent into the customer's Splunk / Sentinel / QRadar.
@@ -1856,13 +1876,3 @@ Reader-side: open an issue on the public GitHub repository if you encounter a te
 *End — Field Guide Glossary.*
 
 *Companion files:* `01-foundations.md` · `02-patterns.md` · `03-production.md` · `05-anki-deck/` · `CONFLICTS.md` · `LICENSE`.
-
-
-## Anki
-
-Open-source spaced-repetition flashcard application ([apps.ankiweb.net](https://apps.ankiweb.net/)). This book ships per-tier Anki decks (`05-anki-deck/01-foundations.apkg`, etc.) for vocabulary retention. Spaced repetition is a learning technique where flashcards are reviewed at increasing intervals based on recall difficulty — successful recalls schedule the card further out; failures bring it back sooner. Pedagogically effective for the dense terminology a Field-Guide reader needs to retain across weeks.
-
-
-## Agent Governance Toolkit (AGT)
-
-Microsoft's action-layer governance framework for agent runtimes. AGT intercepts the *action* an agent is about to take — a tool call, a state mutation, an external API call — and applies policy to the action itself (allowed/denied, requires approval, requires step-up auth). Sits in the critical path of the action: if the governance check fails, the action does not happen. Foundations §1.10 places AGT in the four-approach governance model (Guardrails → Action-layer → Sandbox → Cryptographic). Patterns §2.5 carries the FGA-bound approval flow and HITL gate depth.
