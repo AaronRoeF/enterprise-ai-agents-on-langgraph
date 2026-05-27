@@ -2,7 +2,7 @@
 
 *A practitioner's reference for shipping enterprise AI agents in production.*
 
-**Author:** Aaron Fulkerson · **License:** [CC BY-SA 4.0](LICENSE) · **Status:** **Part I of III — Foundations — published 2026-05-26**. Parts II (Patterns) and III (Production) in development.
+**Author:** Aaron Fulkerson · **License:** [CC BY-SA 4.0](LICENSE) · **Status:** **All three Parts published — Foundations (Part I), Patterns (Part II), Production (Part III)** — last updated 2026-05-27. Patterns (Part II) shipped with the PEER reader-swarm-driven wave-1 + wave-2 + wave-3 editorial passes applied; Production (Part III) shipped with the Pass 2d Unicode arrow whitelist sweep. Quarterly 90-day update cadence + glossary audit committed.
 
 ---
 
