@@ -1,0 +1,17 @@
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Local artifacts (never publish drafts / sweep logs / snapshots)
+.rollback-snapshots/
+.eye-snapshots/
+.eye-log.md
+ref-*.md
+RELOAD-OCARA.md
+PULSE.md
