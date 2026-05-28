@@ -1,3 +1,12 @@
+<!--
+title: Enterprise AI Agents on LangGraph — A Field Guide
+part: III — Production
+version: v1.1
+date: 2026-05-27
+author: Aaron Fulkerson
+license: CC BY-SA 4.0
+-->
+
 # Enterprise AI Agents on LangGraph: A Field Guide — Production
 
 > **Part III of III — Expert.** Reading time: ~15–20 hours (extended-canon ongoing reference). Page count: ~250 pp.

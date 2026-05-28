@@ -1,10 +1,10 @@
 <!--
 title: Enterprise AI Agents on LangGraph — A Field Guide
-chapter: 04 — Glossary
-version: 1.0 (draft)
-license: CC BY-SA 4.0
+part: Glossary
+version: v1.1
+date: 2026-05-27
 author: Aaron Fulkerson
-date: 2026-05-24
+license: CC BY-SA 4.0
 -->
 
 # Enterprise AI Agents on LangGraph: A Field Guide

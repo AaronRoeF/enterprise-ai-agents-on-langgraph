@@ -1,21 +1,11 @@
----
-file: 02-patterns.md
-project: OCARA / Field Guide
-tier: Patterns (Intermediate)
-chapter: 2
-status: v1 — initial Patterns-tier draft
-date: 2026-05-24
-reading_time: 12–15 hours (ongoing reference; not a single-sitting read)
-target_length: 4,000–6,000 lines
-prerequisite: 01-foundations.md (both reading paths re-merge here)
-related:
-  - "[[01-foundations]]"
-  - "[[03-production]]"
-  - "[[04-glossary]]"
-  - "[[CONFLICTS]]"
+<!--
+title: Enterprise AI Agents on LangGraph — A Field Guide
+part: II — Patterns
+version: v1.1
+date: 2026-05-27
+author: Aaron Fulkerson
 license: CC BY-SA 4.0
-author: Aaron Fulkerson — known POV disclosed in CONFLICTS.md
----
+-->
 
 # Enterprise AI Agents on LangGraph: A Field Guide
 

@@ -1,8 +1,8 @@
 <!--
 title: Enterprise AI Agents on LangGraph — A Field Guide
-chapter: 00 — Foreword
-version: v1.0
-date: 2026-05-24
+part: Foreword
+version: v1.1
+date: 2026-05-27
 author: Aaron Fulkerson
 license: CC BY-SA 4.0
 -->
