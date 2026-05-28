@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+title: "Enterprise AI Agents on LangGraph: A Field Guide"
+message: "If you use, cite, or build on this work, please cite it as below."
+type: book
+authors:
+  - family-names: "Fulkerson"
+    given-names: "Aaron"
+    affiliation: "OPAQUE Systems"
+repository-code: "https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph"
+url: "https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph"
+license: "CC-BY-SA-4.0"
+version: "1.1.0"
+date-released: "2026-05-27"
+keywords:
+  - enterprise AI agents
+  - LangGraph
+  - field guide
+  - MCP (Model Context Protocol)
+  - OAuth 2.x
+  - FGA (Fine-Grained Authorization)
+  - SPIFFE
+  - RATS attestation
+  - audit-evidence
+  - AI governance
+  - agentic AI
+  - DORA
+  - HIPAA
+  - SR 11-7
+abstract: >-
+  A practitioner's reference for shipping enterprise AI agents in production.
+  Three Parts — Foundations (the 10-tier agent stack, the 7 LangGraph
+  topologies, the 6 recipe families at intro depth, the 3 identity problems,
+  the named-incident anchors, the evidence-class taxonomy); Patterns (the
+  framework landscape at procurement-grade depth, the topologies at deployment
+  depth, the recipes with audit-evidence patterns and failure-mode runbooks
+  and 30/60/90 postures, the Identity / Agent AuthZ section at full depth, the
+  ICP segment variants, the governance categories with cross-tenant five-
+  surface enumeration, the deployment shapes, the hyperscaler Rosetta Stone +
+  WAF-pillar cross-walk, the exit-portability skeleton); Production (the 10-
+  axis deployment-shape matrix, the Cross-Tenant Isolation section, the
+  Integration Cookbook, the Audit-Evidence Cookbook, the per-regime
+  regulatory depth chapters, the 14 governance failure modes at expert depth,
+  the recipe-by-recipe Production deep-dives, the operational-lifecycle role-
+  play, the capstone). LangGraph-anchored (eighteen of eighteen named
+  customer-disclosed enterprise deployments in the public corpus surveyed are
+  LangGraph) while surveying the broader landscape across ~27 frameworks
+  including CrewAI, AutoGen / AG2, Microsoft Agent Framework, OpenAI Agents
+  SDK, LlamaIndex Workflows, Semantic Kernel, AWS Bedrock AgentCore, Azure AI
+  Foundry, GCP Vertex Agent Engine, NVIDIA AI-Q, IBM watsonx Orchestrate,
+  Salesforce Agentforce. Audience: anyone shipping enterprise AI agents —
+  Sales Engineers, Solution Consultants, Product Managers, Forward Deployed
+  Engineers, developers, Enterprise Architects, CISOs. Citation discipline:
+  every factual claim carries one of ten evidence-class tags.

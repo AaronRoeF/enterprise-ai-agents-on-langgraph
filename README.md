@@ -6,6 +6,31 @@
 
 ---
 
+## 🧭 Start here
+
+Pick the path that matches how you read:
+
+- **🚶 Linear (new hire, ~6–8h for Part I + ~12–15h for Part II + ~15–20h for Part III)** — start at [`book/00-foreword.md`](book/00-foreword.md), then [`book/00-introduction.md`](book/00-introduction.md), then walk Parts I → II → III. Foundations is the must-read core; Patterns + Production are extended canon you return to as customer engagements demand. Mentor check-ins at four named points. Roughly 60–90 days to "holding your end of the conversation."
+- **🎯 Skip-to-tier (already shipping)** — go straight to the Part that matches your seat: [Part I — Foundations](book/01-foundations.md) for vocabulary fluency; [Part II — Patterns](book/02-patterns.md) for the framework landscape + deployment-depth recipes + identity + governance; [Part III — Production](book/03-production.md) for the 10-axis deployment matrix + cross-tenant isolation + per-regime regulatory depth + audit-evidence cookbook.
+- **🔍 Look-up (field reference)** — start with the [glossary](book/04-glossary.md) (270+ entries, cross-tier-consistent), then jump into the section the customer brief surfaces.
+
+**By role**: PMs and product leaders → §00-introduction's dual-track PM path + Part II ICP segment variants. Sales Engineers → Part I vocabulary + Part II framework decision matrix (§2.1.9) + procurement-ambiguity traps (§2.1.4). Solution Consultants → Part II recipe sections + per-recipe Audit-Evidence Patterns. Forward Deployed Engineers → Part II §2.4 Identity + §2.7.2 cross-tenant five-surface config snippets + Part III §3.3 Integration Cookbook. Enterprise Architects → Part II §2.8 deployment shapes + §2.9.7.2 WAF-pillar cross-walk + §2.8.5 exit-portability skeleton. CISOs → Part II §2.7 governance + §2.5.2 healthcare PHI checklist + §2.5.1 FSI Tier-1/Tier-2 regulatory map + Part III §3.4 Audit-Evidence Cookbook + §3.5 per-regime regulatory depth.
+
+## Table of contents
+
+- [What this is](#what-this-is)
+- [What you walk away with](#what-you-walk-away-with)
+- [What's published right now: Part I — Foundations](#whats-published-right-now-part-i--foundations)
+- [Part II — Patterns](book/02-patterns.md)
+- [Part III — Production](book/03-production.md)
+- [Glossary](book/04-glossary.md)
+- [Anki decks (spaced retrieval)](book/05-anki-deck/)
+- [Conflicts of interest disclosure](CONFLICTS.md)
+- [Contributing](CONTRIBUTING.md)
+- [License (CC BY-SA 4.0)](LICENSE)
+
+---
+
 ## What this is
 
 This is a public, citation-disciplined field guide for the people who actually ship enterprise AI agents — Sales Engineers, Solution Consultants, Product Managers, architects, CISOs, and the broader practitioner community. It treats agents as a real production discipline, not a demo.
