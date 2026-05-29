@@ -47,7 +47,7 @@ The book is titled *Enterprise AI Agents on LangGraph* because **LangGraph is th
 
 The reader floor for Foundations (Part I) is intentionally low. You are assumed to know what an LLM is, what an API is, what JSON is, what OAuth / SSO is at a conceptual level, and the names Postgres and Redis. You have probably built a chatbot demo or run through a RAG tutorial. You have NOT deployed an agent in production. You do not need to be a Python engineer to read Foundations — there is an explicit reading path for the non-coder.
 
-By the time you finish all three Parts, you should be able to hold a discovery call with a Tier-1 FSI prospect, sketch the architecture on a whiteboard, name the failure modes the prospect cares about, defend the framework recommendation against an alternative, and articulate which mitigations live at which architectural layer.
+By the time you finish all three Parts, you should be able to hold a discovery call with an enterprise (or regulated-enterprise) prospect, sketch the architecture on a whiteboard, name the failure modes the prospect cares about, defend the framework recommendation against an alternative, and articulate which mitigations live at which architectural layer.
 
 The intended audiences:
 

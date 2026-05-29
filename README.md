@@ -2,7 +2,7 @@
 
 *A practitioner's reference for shipping enterprise AI agents in production.*
 
-By the time you finish this book you can **walk into a Tier-1 financial-services agent discovery call ready: sketch the architecture on a whiteboard, name the failure modes the prospect actually loses sleep over, defend the framework recommendation against a credible alternative, and tell a CISO which leak surfaces live at which layer and which ones don't have a clean answer yet.** Two to three months of focused reading lands you there if you're new to enterprise agents. If you're already shipping, this is the structured reference you can hand to your next hire on day one.
+By the time you finish this book you can **walk into an enterprise (or regulated-enterprise) agent discovery call ready: sketch the architecture on a whiteboard, name the failure modes the prospect actually loses sleep over, defend the framework recommendation against a credible alternative, and tell a CISO which leak surfaces live at which layer and which ones don't have a clean answer yet.** Two to three months of focused reading lands you there if you're new to enterprise agents. If you're already shipping, this is the structured reference you can hand to your next hire on day one.
 
 By Part:
 
