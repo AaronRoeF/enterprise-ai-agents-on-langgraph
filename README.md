@@ -8,7 +8,7 @@ By Part:
 
 - **Part I — Foundations** — you can read along in a discovery call and recognize what your customer is running.
 - **Part II — Patterns** — you can defend a state graph at a whiteboard and walk the FGA model, the OAuth primitive layering, and the recipe-by-recipe Audit-Evidence Pattern.
-- **Part III — Production** — you can produce the evidence a regulator will ask for six months after an action.
+- **Part III — Production** — you can ship and operate the agent at production grade: hit the business outcome at scale, keep customer data inside its tenancy, withstand the named-incident class of attack, and produce the audit-evidence chain a regulator will ask for six months after an action.
 
 **Author:** Aaron Fulkerson · **License:** [CC BY-SA 4.0](LICENSE) · **Status:** All three Parts published · **Version:** [v1.1.0](https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph/releases/tag/v1.1.0) · **Changelog:** [CHANGELOG.md](CHANGELOG.md) (links to [GitHub Releases](https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph/releases) for full notes)
 
