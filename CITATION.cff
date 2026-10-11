@@ -9,8 +9,8 @@ authors:
 repository-code: "https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph"
 url: "https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph"
 license: "CC-BY-SA-4.0"
-version: "1.1.0"
-date-released: "2026-05-27"
+version: "1.2.0"
+date-released: "2026-10-10"
 keywords:
   - enterprise AI agents
   - LangGraph

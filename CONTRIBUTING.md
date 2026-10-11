@@ -116,7 +116,7 @@ To give a sense of what lands cleanly through review:
 
 And what doesn't land cleanly:
 
-- **"Replace the EchoLeak mitigation with \<vendor product\>."** — vendor positioning, blocked. The Field Guide does not name a remediation answer at the substrate level; it describes the category. The OPAQUE 2.7 / 3.0 overlay (per `CONFLICTS.md`) is the separate artifact that names a product, and it lives outside this repository.
+- **"Replace the EchoLeak mitigation with \<vendor product\>."** — vendor positioning, blocked. The Field Guide does not name a remediation answer at the substrate level; it describes the category.
 - **"Rewrite the foreword in a more enthusiastic tone."** — voice-locked. The author handles foreword changes personally.
 - **"Add a benchmark claim sourced from a Reddit thread."** — community-reported evidence is welcome but should be tagged `[community-reported]` and clearly marked as anecdotal. If you want to upgrade the tag, find the corroborating customer-disclosed or independent source.
 

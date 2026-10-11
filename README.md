@@ -50,7 +50,7 @@ The book does not assume LangGraph as your production choice. It surveys ~27 fra
 ## What this is NOT
 
 - **A procurement-evaluation document.** Procurement decisions require independent vendor evaluation. See [CONFLICTS.md](CONFLICTS.md).
-- **An OPAQUE marketing piece.** The author is the CEO of OPAQUE Systems and discloses that affiliation transparently. The body follows a standards-anchored editorial rule documented in [CONFLICTS.md](CONFLICTS.md) §1 — OPAQUE is named only where a named industry standard has a specific OPAQUE-shipping primitive.
+- **An OPAQUE marketing piece.** The author led OPAQUE Systems while writing it and discloses that affiliation transparently. The body follows a standards-anchored editorial rule documented in [CONFLICTS.md](CONFLICTS.md) §1 — OPAQUE is named only where a named industry standard has a specific OPAQUE-shipping primitive.
 - **A substitute for vendor due diligence.** Named-customer evidence is mostly vendor-disclosed at launch; the Klarna AI-only customer-support reversal (Production §3.9) is the canonical reminder of how launch metrics evolve.
 - **A guarantee that any named deployment has been independently audited.** Every factual claim carries an evidence-class tag from a 10-class taxonomy so you can weigh it correctly.
 

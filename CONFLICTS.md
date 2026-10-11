@@ -7,10 +7,10 @@ This disclosure accompanies *Enterprise AI Agents on LangGraph: A Field Guide* f
 ## Author Affiliation
 
 **Author:** Aaron Fulkerson
-**Primary affiliation:** OPAQUE Systems — CEO
-**Author financial interest in OPAQUE:** Equity. The author has economic interest in the success of OPAQUE Systems, a venture-backed AI infrastructure company. OPAQUE Systems was founded by Co-Founders Ion Stoica (Executive Chairman), Raluca Ada Popa (Chief Scientist), Rishabh Poddar (CTO), and Chester Leung (no longer at OPAQUE) out of UC Berkeley's RISELab; the author is the company's CEO, not a Co-Founder.
+**Affiliation while writing:** OPAQUE Systems — CEO. Published as a personal work.
+**Author financial interest in OPAQUE:** Equity. The author holds equity in OPAQUE Systems, a venture-backed AI infrastructure company. OPAQUE Systems was founded by Co-Founders Ion Stoica (Executive Chairman), Raluca Ada Popa (Chief Scientist), Rishabh Poddar (CTO), and Chester Leung (no longer at OPAQUE) out of UC Berkeley's RISELab; the author was the company's CEO, not a Co-Founder.
 
-OPAQUE Systems builds confidential AI infrastructure. The company is referenced (a) in the author bio (`00-introduction.md`), (b) in this file, and (c) sparingly in the Part I (Foundations) body where the architecture surfaces a gap that has both a named industry standard (e.g., RATS / EAT / EAR for remote attestation, SPIFFE / SPIRE for workload identity) **and** a specific OPAQUE-shipping primitive (e.g., hardware-enforced signed-JWT issuance, confidential-computing TEE attestation). Per the standards-anchored editorial rule documented in [Editorial Discipline §1 below](#editorial-discipline-applied-to-this-work), OPAQUE is named at most once per section as the implementation pattern, anchored to the underlying standard. The Part II (Patterns) and Part III (Production) bodies contain zero OPAQUE product-positioning references; affiliation and the Phase 2 overlay are disclosed there at the metadata level only.
+OPAQUE Systems built confidential AI infrastructure. The company is referenced (a) in the author bio (`00-introduction.md`), (b) in this file, and (c) sparingly in the Part I (Foundations) and Part II (Patterns) bodies where the architecture surfaces a gap that has both a named industry standard (e.g., RATS / EAT / EAR for remote attestation, SPIFFE / SPIRE for workload identity) **and** a specific primitive OPAQUE built (e.g., hardware-enforced signed-JWT issuance, confidential-computing TEE attestation). Per the standards-anchored editorial rule documented in [Editorial Discipline §1 below](#editorial-discipline-applied-to-this-work), OPAQUE is named at most once per section as the implementation pattern, anchored to the underlying standard. The Part II (Patterns) and Part III (Production) bodies contain zero OPAQUE product-positioning references; affiliation and the Phase 2 overlay are disclosed there at the metadata level only.
 
 ---
 
@@ -49,7 +49,7 @@ The Field Guide does not constitute a recommendation to procure, deploy, or eval
 This work is published under the author's own by-line on aaronfulkerson.com and a public GitHub repository under a CC BY-SA 4.0 license. Time-and-effort funding distinction:
 
 - **Authorship time and effort:** OPAQUE Systems contributed staff time and the use of internal infrastructure during the research and drafting of this work. The work is being released as a community contribution under CC BY-SA 4.0; OPAQUE does not retain exclusive rights to the content.
-- **OPAQUE-specific overlay:** A separate companion artifact — the OPAQUE 2.7 + 3.0 overlay — is being prepared as an internal / partner-channel document. That artifact is **not** published under CC BY-SA, is **not** mirrored on the public GitHub repository, and is **not** referenced in this Field Guide except as a placeholder in the design spec.
+- **OPAQUE-specific overlay:** A planned companion document mapping this Field Guide to OPAQUE 2.7 / 3.0 was cancelled and will not be published.
 
 ---
 
@@ -60,7 +60,7 @@ As of initial publication, this Field Guide has not undergone a formal independe
 - Two rounds of structured adversarial critique by simulated reviewers spanning Sales Engineer, Product Manager, Enterprise Architect, CISO-FSI, LangChain DevRel, and Developer Educator personas, prior to drafting.
 - Citation-discipline review across the 10 evidence-class taxonomy.
 
-A formal inter-rater-reliability study with at least one OPAQUE-internal subject-matter expert and at least one independent external reviewer under NDA is committed for v1.1, per design spec §4.7.
+Parts II and III were also reviewed through expert-reviewer audits before publication.
 
 Readers who identify factual errors, missing evidence, or framings that obscure relevant trade-offs are encouraged to file issues on the public GitHub repository, or contact the author directly via aaronfulkerson.com.
 
@@ -76,4 +76,4 @@ For full transparency: the Field Guide was authored with substantial assistance 
 
 Questions about this disclosure: contact the author via aaronfulkerson.com or open an issue on the GitHub repository.
 
-Last updated: 2026-05-24.
+Last updated: 2026-10-10.

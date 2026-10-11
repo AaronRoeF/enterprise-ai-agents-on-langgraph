@@ -10,7 +10,7 @@ license: CC BY-SA 4.0
 # Enterprise AI Agents on LangGraph: A Field Guide — Production
 
 > **Part III of III — Expert.** Reading time: ~15–20 hours (extended-canon ongoing reference). Page count: ~250 pp.
-> **Author by-line:** Aaron Fulkerson, OPAQUE Systems CEO. Full conflict disclosure: `CONFLICTS.md` at repo root.
+> **Author by-line:** Aaron Fulkerson, OPAQUE Systems. Full conflict disclosure: `CONFLICTS.md` at repo root.
 > **Editorial stance:** Aaron-with-known-POV. Zero product positioning in the body. The substrate-level-remediation observation at §3.6.15 is a category-level architectural fact, not a vendor pitch.
 > **Citation discipline:** Every factual claim carries one of ten evidence-class tags (§13 of the design spec). The strongest tag in this tier is `[primary-regulatory]` — the text of the regulation itself.
 > **NOT a procurement-evaluation document.** This is an educational reference for new SE / SC / PM hires and the broader practitioner community. Procurement decisions require independent vendor evaluation. See `CONFLICTS.md`.
@@ -2712,7 +2712,7 @@ This is the kind of gap where the **42% abandonment rate** matters: insurance bu
 
 **Zero public LangGraph sovereign deployment as of 2026-05** [vendor-public — explicit gap]. Architecturally, every element of the §3.4 audit-evidence pattern and §3.5 regulatory mapping is theoretically realizable on Self-Hosted Enterprise + customer-hosted models. Operationally, no named customer reference exists.
 
-This is the cleanest Phase 2 positioning angle per the design spec. For Phase 1 (this Field Guide), every claim is `[evidence-zero, structural-fit-only]`.
+Every claim here is `[evidence-zero, structural-fit-only]`.
 
 ---
 
@@ -4258,7 +4258,6 @@ From the Knowledge Gate: a passed SE/SC gate + PM gate + Engineer capstone; a me
 ### I.3 What you still need to learn (post-tier)
 
 - **Field reps and customer reference.** The book teaches; the customer-facing assignment under co-pilot pairing closes the calibration gap.
-- **The OPAQUE 2.7 / 3.0 substrate overlay (Phase 2).** The Field Guide is Phase 1. Phase 2 maps the substrate-level cluster (§3.6.15) to the specific OPAQUE-internal product capability — that artifact is OPAQUE-internal-only and post-Field-Guide-publication.
 - **Per-jurisdiction nuance in Gulf / APAC regulators** — the Field Guide cites the named regulators but does not enumerate every nuance per regulator's enforcement posture. Local engagement with the customer's regulatory advisor is required.
 - **Substrate-specific procurement-grade architectural evaluation.** TEE primitives (Intel TDX, AMD SEV-SNP, NVIDIA Confidential Compute) carry residual risks (microarchitectural side channels, TCB size, attestation revocation latency) that require independent vendor evaluation. The Field Guide names the residuals; the procurement evaluation evaluates them.
 
@@ -5502,7 +5501,6 @@ The §3.13 operational-lifecycle role-play is your operational fluency test. The
 
 Beyond this Field Guide:
 
-- The OPAQUE 2.7 / 3.0 substrate overlay (Phase 2 per design spec §10) maps the §3.6.15 substrate-level cluster to specific product capability. That artifact is OPAQUE-internal-only and post-Field-Guide-publication.
 - Customer-region nuances per Gulf / APAC regulator require local engagement with regulatory advisors.
 - The TEE primitives' procurement-grade architectural evaluation (Intel TDX, AMD SEV-SNP, NVIDIA Confidential Compute) requires independent vendor evaluation. The Field Guide names the residual risks (microarchitectural side channels, TCB size, attestation revocation latency, key custody outside the TEE); the procurement evaluation weighs them.
 - The customer-facing assignment under co-pilot pairing closes the calibration gap that book-learning alone cannot close.
@@ -5513,5 +5511,5 @@ Onwards — to the field, to the customers, to the practitioner community, to th
 
 ---
 
-*End — Part III — Production. Total ~5,000+ lines across 14 sections + 17 appendices. CC-BY-SA 4.0. Authored by Aaron Fulkerson with explicit OPAQUE Systems CEO affiliation disclosure in `00-introduction.md` and procurement-grade disclosure in `CONFLICTS.md`. Onwards to `04-glossary.md`.*
+*End — Part III — Production. Total ~5,000+ lines across 14 sections + 17 appendices. CC-BY-SA 4.0. Authored by Aaron Fulkerson with OPAQUE Systems affiliation disclosure in `00-introduction.md` and procurement-grade disclosure in `CONFLICTS.md`. Onwards to `04-glossary.md`.*
 

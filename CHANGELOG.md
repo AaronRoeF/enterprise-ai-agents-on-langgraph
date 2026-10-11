@@ -6,6 +6,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ---
 
+## [v1.2.0] — 2026-10-10 — Personal edition, final
+
+- Published as a personal work; the author's OPAQUE Systems role and its references now read in the past tense.
+- Removed mentions of a planned OPAQUE companion overlay, which was cancelled.
+- Final planned edition. Corrections are welcome as issues and pull requests.
+
 ## [v1.1.0] — 2026-05-27 — All three Parts published
 
 Full release notes: [v1.1.0 on GitHub Releases](https://github.com/AaronRoeF/enterprise-ai-agents-on-langgraph/releases/tag/v1.1.0).
